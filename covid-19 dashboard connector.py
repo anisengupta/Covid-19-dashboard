@@ -11,9 +11,6 @@ service_file = r"C:\Users\Aniruddha.Sengupta\Desktop\Covid-19\eastern-button-271
 
 filepath = r"C:\Users\Aniruddha.Sengupta\Desktop\Covid-19"
 
-#http.client.HTTPConnection._http_vsn = 10
-#http.client.HTTPConnection._http_vsn_str = 'HTTP/1.0'
-
 def update_covid_19_dashboard(service_file, filepath):
     #DOWNLOAD FILE FROM THE WEB
     #Get today's date
