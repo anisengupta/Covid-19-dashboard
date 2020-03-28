@@ -5,7 +5,7 @@ import pygsheets
 import pandas as pd
 import os
 from bs4 import BeautifulSoup
-import http.client
+import urllib.request, json
 
 service_file = r"C:\Users\Aniruddha.Sengupta\Desktop\Covid-19\eastern-button-271616-6ce9bf4645df.json"
 
