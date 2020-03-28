@@ -12,31 +12,24 @@ service_file = r"C:\Users\Aniruddha.Sengupta\Desktop\Covid-19\eastern-button-271
 filepath = r"C:\Users\Aniruddha.Sengupta\Desktop\Covid-19"
 
 def update_covid_19_dashboard(service_file, filepath):
-    #DOWNLOAD FILE FROM THE WEB
-    #Get today's date
-    today = dt.date.today().strftime('%Y-%m-%d')
+    #GET JSON FILE
+    #Open the JSON file
+    with urllib.request.urlopen('https://opendata.ecdc.europa.eu/covid19/casedistribution/json/') as url:
+        data = json.loads(url.read().decode())
+    
+    #Make a list of nested dictionaries
+    data = data['records']
 
-    #Starting the download using today's date
-    print('Download Starting...')
+    #Put into dataframe
+    df = pd.DataFrame(data)
 
-    url = f'https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-{today}.xlsx'
-
-    r = requests.get(url)
-
-    filename = url.split('/')[-1] # this will take only -1 splitted part of the url
-
-    #Saving off the latest file in the project folder
-    with open(filename,'wb') as output_file:
-        output_file.write(r.content)
-
-    print('Download Completed!!!')
     #-------------------------------------------------------------------------------------------------------------
     #IMPORT THE LATEST FILE AS A PD DATAFRAME AND PUTS INTO GOOGLE SHEETS
     #authorization
     gc = pygsheets.authorize(service_file=service_file)
 
     #Download the latest file
-    data = pd.read_excel(os.path.join(filepath, f'COVID-19-geographic-disbtribution-worldwide-{today}.xlsx'))
+    data = df
 
     #Replace UK with GB
     data['geoId'].replace({'UK': 'GB'}, inplace=True)
