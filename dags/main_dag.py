@@ -72,7 +72,7 @@ def covid_19_dashboard_update(
     # Push the dataframe to Postgres
     logging.info("Pushing the dataframe to Postgres")
     dashboard_connector.Postgres(username=username, password=password).push_to_postgres(
-        df=df, table_name=table_name, engine=engine
+        df=df, table_name=table_name, engine=engine, job_type='append'
     )
 
     # Logging the end
