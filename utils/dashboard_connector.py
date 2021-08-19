@@ -151,7 +151,7 @@ class GetData:
         df_list = []
 
         for country_code in dict_keys:
-            print(f"Evaluating data for {country_code}")
+            print(f"\rEvaluating data for {country_code}", end='')
             df = GetData.dataframe_per_country(
                 data=data, country_code=country_code, columns=columns
             )
@@ -210,7 +210,7 @@ class Postgres:
         return sqa.create_engine(engine_url)
 
     @staticmethod
-    def push_to_postgres(df: pd.DataFrame, table_name: str, engine: sqa.engine):
+    def push_to_postgres(df: pd.DataFrame, table_name: str, engine: sqa.engine, job_type: str):
         """
         Pushes a dataframe to the relevant Postgres database; based on the engine param created.
 
@@ -219,10 +219,11 @@ class Postgres:
         df: pd.Dataframe, the dataframe to be pushed.
         table_name: str, the name of the table inside the database to be pushed to.
         engine: sqa.engine, the SQL Alchemy engine created.
+        job_type: str, the job to do if data in the dataframe already exists, eg 'append', 'replace'.
 
         Returns
         -------
         The dataframe being pushed to the relevant database and table.
 
         """
-        return df.to_sql(table_name, engine)
+        return df.to_sql(table_name, engine, if_exists=job_type)
