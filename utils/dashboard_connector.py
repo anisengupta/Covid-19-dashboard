@@ -80,8 +80,8 @@ class GetData:
         A dict.
 
         """
-        geo_ids = geo_id_df['ISO-3166alpha2'].tolist()
-        country_codes = geo_id_df['ISO-3166alpha3'].tolist()
+        geo_ids = geo_id_df["ISO-3166alpha2"].tolist()
+        country_codes = geo_id_df["ISO-3166alpha3"].tolist()
 
         return dict(zip(country_codes, geo_ids))
 
@@ -134,9 +134,9 @@ class GetData:
         ).T
 
         # Make additional columns
-        df['country_code'] = country_code
+        df["country_code"] = country_code
         df["location"] = data[country_code]["location"]
-        df['geo_id'] = geo_ids_dict.get(country_code)
+        df["geo_id"] = geo_ids_dict.get(country_code)
 
         return GetData.filter_dataframe(df=df, columns=columns)
 
@@ -164,7 +164,11 @@ class GetData:
 
         for _index in range(0, len(country_data)):
             df = GetData.make_dataframe(
-                data=data, country_code=country_code, _index=_index, columns=columns, geo_ids_dict=geo_ids_dict
+                data=data,
+                country_code=country_code,
+                _index=_index,
+                columns=columns,
+                geo_ids_dict=geo_ids_dict,
             )
             df_list.append(df)
 
@@ -193,9 +197,12 @@ class GetData:
         df_list = []
 
         for country_code in dict_keys:
-            print(f"\rEvaluating data for {country_code}", end='')
+            print(f"\rEvaluating data for {country_code}", end="")
             df = GetData.dataframe_per_country(
-                data=data, country_code=country_code, columns=columns, geo_ids_dict=geo_ids_dict
+                data=data,
+                country_code=country_code,
+                columns=columns,
+                geo_ids_dict=geo_ids_dict,
             )
             df_list.append(df)
 
@@ -252,7 +259,9 @@ class Postgres:
         return sqa.create_engine(engine_url)
 
     @staticmethod
-    def push_to_postgres(df: pd.DataFrame, table_name: str, engine: sqa.engine, job_type: str):
+    def push_to_postgres(
+        df: pd.DataFrame, table_name: str, engine: sqa.engine, job_type: str
+    ):
         """
         Pushes a dataframe to the relevant Postgres database; based on the engine param created.
 
@@ -269,3 +278,74 @@ class Postgres:
 
         """
         return df.to_sql(table_name, engine, if_exists=job_type)
+
+    @staticmethod
+    def get_data_from_postgres(query: str, engine: sqa.engine) -> pd.DataFrame:
+        """
+        Retrieves data from Postgres based on the relevant query and
+        engine params.
+
+        Parameters
+        ----------
+        query: str, the query to execute.
+        engine: sqa.engine, the engine needed for the connection.
+
+        Returns
+        -------
+        A pandas dataframe
+
+        """
+        return pd.read_sql(query, engine)
+
+
+class DashboardGraphs:
+    """
+    Class contains functions to create and manipulate data to show graphs
+    on the Dash app.
+
+    """
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def group_by_data(df: pd.DataFrame, group_by_col: str) -> pd.DataFrame:
+        """
+        Performs a groupby on the initial dataframe.
+
+        Parameters
+        ----------
+        df: a pandas dataframe input.
+        group_by_col: str, the column by which to perform the groupby.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        return (
+            df.groupby([group_by_col])["total_cases", "total_deaths"]
+            .max()
+            .reset_index()
+        )
+
+    @staticmethod
+    def create_death_rate_data(group_by_df: pd.DataFrame) -> pd.DataFrame:
+        """
+        Creates a dataframe that calculates death rate of Covid-19 for each
+        country.
+
+        Parameters
+        ----------
+        group_by_df: a grouped dataframe.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        group_by_df["death_rate"] = (
+            group_by_df["total_deaths"] / group_by_df["total_cases"]
+        )
+
+        return group_by_df
