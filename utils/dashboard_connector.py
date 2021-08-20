@@ -51,6 +51,41 @@ class GetData:
         return list(data.keys())
 
     @staticmethod
+    def make_country_codes_dataframe(url: str) -> pd.DataFrame:
+        """
+        Creates a table of countries and their respective ISO codes.
+
+        Parameters
+        ----------
+        url: str, the url to parse through.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        return pd.read_html(url)[1]
+
+    @staticmethod
+    def make_geo_ids_dict(geo_id_df: pd.DataFrame) -> dict:
+        """
+        Makes a dictionary of country codes with their respective geo ids.
+
+        Parameters
+        ----------
+        geo_id_df: pd.DataFrame, the input dataframe with the country codes and their geo ids.
+
+        Returns
+        -------
+        A dict.
+
+        """
+        geo_ids = geo_id_df['ISO-3166alpha2'].tolist()
+        country_codes = geo_id_df['ISO-3166alpha3'].tolist()
+
+        return dict(zip(country_codes, geo_ids))
+
+    @staticmethod
     def filter_dataframe(df: pd.DataFrame, columns: list) -> pd.DataFrame:
         """
         Filters the dataframe to the columns param specified.
@@ -76,7 +111,7 @@ class GetData:
 
     @staticmethod
     def make_dataframe(
-        data: dict, country_code: str, _index: int, columns: list
+        data: dict, country_code: str, _index: int, columns: list, geo_ids_dict: dict
     ) -> pd.DataFrame:
         """
         Makes a pandas dataframe based on the country_code, _index and columns params.
@@ -87,6 +122,7 @@ class GetData:
         country_code: str, the country code to get data for, eg 'AFG'.
         _index: int, the index to be specified to get data for.
         columns: list, the columns to be filtered.
+        geo_ids_dict: dict, a dict of country codes and their respective geo ids.
 
         Returns
         -------
@@ -96,13 +132,17 @@ class GetData:
         df = pd.DataFrame.from_dict(
             data[country_code]["data"][_index], orient="index"
         ).T
+
+        # Make additional columns
+        df['country_code'] = country_code
         df["location"] = data[country_code]["location"]
+        df['geo_id'] = geo_ids_dict.get(country_code)
 
         return GetData.filter_dataframe(df=df, columns=columns)
 
     @staticmethod
     def dataframe_per_country(
-        data: dict, country_code: str, columns: list
+        data: dict, country_code: str, columns: list, geo_ids_dict: dict
     ) -> pd.DataFrame:
         """
         Creates an overall dataframe for an overall country based on a specific country_code.
@@ -112,6 +152,7 @@ class GetData:
         data: dict, the data dictionary created using the func get_json_data.
         country_code: str, the country code to get data for, eg 'AFG'.
         columns: list, the columns to be filtered.
+        geo_ids_dict: dict, a dict of country codes and their respective geo ids.
 
         Returns
         -------
@@ -123,7 +164,7 @@ class GetData:
 
         for _index in range(0, len(country_data)):
             df = GetData.make_dataframe(
-                data=data, country_code=country_code, _index=_index, columns=columns
+                data=data, country_code=country_code, _index=_index, columns=columns, geo_ids_dict=geo_ids_dict
             )
             df_list.append(df)
 
@@ -131,7 +172,7 @@ class GetData:
 
     @staticmethod
     def dataframe_all_countries(
-        data: dict, dict_keys: list, columns: list
+        data: dict, dict_keys: list, columns: list, geo_ids_dict: dict
     ) -> pd.DataFrame:
         """
         Gets data for all the countries based on a list of country codes (the dict_keys param).
@@ -142,6 +183,7 @@ class GetData:
         dict_keys: list, the keys of the dictionary created using the get_json_data func, this should
         contain the list of country codes.
         columns: list, the columns to be filtered.
+        geo_ids_dict: dict, a dict of country codes and their respective geo ids.
 
         Returns
         -------
@@ -153,7 +195,7 @@ class GetData:
         for country_code in dict_keys:
             print(f"\rEvaluating data for {country_code}", end='')
             df = GetData.dataframe_per_country(
-                data=data, country_code=country_code, columns=columns
+                data=data, country_code=country_code, columns=columns, geo_ids_dict=geo_ids_dict
             )
             df_list.append(df)
 
