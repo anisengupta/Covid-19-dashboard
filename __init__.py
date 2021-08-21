@@ -10,13 +10,20 @@ app = dash.Dash(
     external_stylesheets=[dbc.themes.UNITED],
 )
 
+# Set the app title
 app.title = 'Covid 19 data dashboard'
 
 # Set the cache config
-cache = Cache(app.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
-})
+config = {
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
+}
+
+# Set the cache config
+cache = Cache(app.server,
+              config=config
+              )
 
 # Initialise the cache
 cache.init_app(app.server)
