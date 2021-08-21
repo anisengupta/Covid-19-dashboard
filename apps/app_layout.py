@@ -1,10 +1,9 @@
 # Initial Config
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-from utils import config
 import plotly.graph_objects as go
+import plotly.express as px
 import pandas as pd
 from utils import config
 
@@ -44,6 +43,16 @@ def make_navbar_title():
     )
 
     return navbar
+
+
+def make_break():
+    """
+    Makes the break in the layout.
+    Returns
+    -------
+    A break in the page.
+    """
+    return html.Br()
 
 
 def make_bar_chart_title_explanation(title: str, desc: str) -> str:
@@ -112,4 +121,59 @@ def make_horizontal_bar_chart(data: pd.DataFrame,
     )
 
     return fig
+
+
+def make_time_series_chart(data: pd.DataFrame,
+                           x_col: str,
+                           y_cols: list,
+                           title: str,
+                           desc: str):
+    """
+    Makes a time series chart based on the input params. Note that it is
+    assumed that the param x_col will be a datetime column.
+
+    Parameters
+    ----------
+    data: the pandas dataframe input.
+    x_col: str, the x column.
+    y_cols: list, the y columns.
+    title: str, the title of the graph.
+    desc: str, the description of the graph.
+
+    Returns
+    -------
+
+    """
+    fig = px.line(data, x=x_col, y=y_cols)
+
+    # Update the layout so the bar chart is in descending order
+    fig.update_layout(
+        title=make_bar_chart_title_explanation(title, desc),
+        font_family=config.font,
+        title_font_family=config.font,
+        title_font_color="black",
+    )
+
+    return fig
+
+
+def make_time_series_dropdown(options: list):
+    """
+    Makes a Dash dropdown based on the options provided.
+
+    Parameters
+    ----------
+    options: list, a list of dictionaries to be provided.
+
+    Returns
+    -------
+    A Dash dropdown.
+
+    """
+    dropdown = dcc.Dropdown(
+        id='time-series-dropdown',
+        options=options
+    )
+
+    return dropdown
 

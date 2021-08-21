@@ -4,6 +4,7 @@ import numpy as np
 import urllib.request
 import json
 import sqlalchemy as sqa
+from utils import config
 
 
 # Classes
@@ -349,3 +350,68 @@ class DashboardGraphs:
         )
 
         return group_by_df
+
+    @staticmethod
+    def create_time_series_data(df: pd.DataFrame,
+                                country: str = None) -> pd.DataFrame:
+        """
+        Creates a dataframe required to make a timeseries chart in the Dash app.
+
+        Parameters
+        ----------
+        df: the pandas dataframe input.
+        country: str, the country to filter the dataframe by.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+
+        # If the country_code param is passed in the filter the df accordingly
+        if country:
+            df = df[df['location'] == country]
+        else:
+            pass
+
+        # Remove the continents
+        df = df[~df["location"].isin(config.continents)]
+
+        # Group by new cases & deaths
+        df_grouped = df.groupby('date')['new_cases', 'new_deaths'].sum().reset_index()
+
+        # Remove null values in new_cases & new_deaths cols
+        df_grouped['new_cases'] = df_grouped['new_cases'].fillna(0)
+        df_grouped['new_deaths'] = df_grouped['new_deaths'].fillna(0)
+
+        return df_grouped
+
+    @staticmethod
+    def create_dropdown_options(df: pd.DataFrame) -> list:
+        """
+        Creates a list of locations to be used as the Dash dropdown values.
+
+        Parameters
+        ----------
+        df: a pandas dataframe input.
+
+        Returns
+        -------
+
+        """
+        # Create a list of locations
+        locations = df['location'].unique().tolist()
+
+        # Add an 'All'
+        locations = ['All'] + locations
+
+        # Filter out the continents
+        locations = [i for i in locations if i not in config.continents]
+
+        # Construct the required list of dictionaries
+        sub_dicts = []
+        for location in locations:
+            sub_dict = {'label': location, 'value': location}
+            sub_dicts.append(sub_dict)
+
+        return sub_dicts

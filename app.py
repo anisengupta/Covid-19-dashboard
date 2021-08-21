@@ -1,18 +1,12 @@
 # Initial Config
-import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
-from apps import app_layout
+from apps import app_layout, app_callbacks
 from utils import dashboard_connector, config
+from __init__ import app, cache
 
 # Initiate the app
-app = dash.Dash(
-    __name__,
-    suppress_callback_exceptions=True,
-    external_stylesheets=[dbc.themes.UNITED],
-)
-
 server = app.server
 
 # Set the title
@@ -46,6 +40,7 @@ engine = dashboard_connector.Postgres(
 df = dashboard_connector.Postgres(
     username=config.username, password=config.password
 ).get_data_from_postgres(query=query, engine=engine)
+cache.set('covid-19-data', df)
 
 # Perform a groupby
 df_groupby = dashboard_connector.DashboardGraphs.group_by_data(
@@ -90,7 +85,7 @@ death_rate_by_country_chart = app_layout.make_horizontal_bar_chart(
 )
 
 # Create a horizontal charts row
-row = html.Div(
+horizontal_chart_row = html.Div(
     dbc.Row(
         children=[
             dbc.Col([
@@ -112,8 +107,54 @@ row = html.Div(
     )
 )
 
+# Make a time series dataframe
+df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(
+    df=df
+)
+cache.set('original-time-series-data', df_time_series)
+
+# Make a time series chart
+time_series_chart = app_layout.make_time_series_chart(
+    data=df_time_series,
+    x_col='date',
+    y_cols=['new_cases', 'new_deaths'],
+    title='Cases and deaths by country',
+    desc='Time series of Covid-19 cases'
+)
+
+# Make time series dropdown options
+options = dashboard_connector.DashboardGraphs.create_dropdown_options(df=df)
+
+# Make the time series dropdown
+dropdown = app_layout.make_time_series_dropdown(options=options)
+
+time_series_row = html.Div(
+    dbc.Row(
+        children=[
+            dbc.Col(
+                html.Div(
+                    dcc.Graph(id='time-series-chart', figure=time_series_chart)),
+                width=10, id='time-series-chart-area'
+            ),
+            dbc.Col([
+                app_layout.make_break(),
+                app_layout.make_break(),
+                dropdown
+            ])
+        ]
+    )
+)
+
 # Set the layout
-app.layout = html.Div(children=[title, row])
+app.layout = html.Div(children=[
+    title,
+    horizontal_chart_row,
+    app_layout.make_break(),
+    time_series_row
+])
+
+# Callbacks
+app_callbacks.register_app_callbacks(app=app)
 
 # Run the app
 if __name__ == "__main__":
