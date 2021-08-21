@@ -6,6 +6,7 @@ import dash_bootstrap_components as dbc
 from utils import config
 import plotly.graph_objects as go
 import pandas as pd
+from utils import config
 
 
 # Functions
@@ -45,7 +46,40 @@ def make_navbar_title():
     return navbar
 
 
-def make_horizontal_bar_chart(data: pd.DataFrame, x_col: str, y_col: str, title: str):
+def make_bar_chart_title_explanation(title: str, desc: str) -> str:
+    """
+    Creates the title and description for the chart.
+
+    Parameters
+    ----------
+    title: str, the title of the graph.
+    desc: str, the description of the graph.
+
+    Returns
+    -------
+    A string with like so:
+    Title of graph
+
+    Description of graph
+
+    """
+    html_str = f"""
+    <b>{title}</b>
+    <br>
+    <br>
+    {desc}
+    <br>
+    <br>
+    """
+
+    return html_str
+
+
+def make_horizontal_bar_chart(data: pd.DataFrame,
+                              x_col: str,
+                              y_col: str,
+                              title: str,
+                              desc: str):
     """
     Makes a horizontal bar chart based on the data inputs.
 
@@ -55,6 +89,7 @@ def make_horizontal_bar_chart(data: pd.DataFrame, x_col: str, y_col: str, title:
     x_col: str, the name of the x column.
     y_col: str, the name of the y column.
     title: str, the title of the graph.
+    desc: str, the description of the chart.
 
     Returns
     -------
@@ -68,6 +103,13 @@ def make_horizontal_bar_chart(data: pd.DataFrame, x_col: str, y_col: str, title:
     fig = go.Figure(go.Bar(x=x_values, y=y_values, orientation="h"))
 
     # Update the layout so the bar chart is in descending order
-    fig.update_layout(title=title, yaxis=dict(autorange="reversed"))
+    fig.update_layout(
+        title=make_bar_chart_title_explanation(title, desc),
+        font_family=config.font,
+        title_font_family=config.font,
+        title_font_color="orange",
+        yaxis=dict(autorange="reversed")
+    )
 
     return fig
+

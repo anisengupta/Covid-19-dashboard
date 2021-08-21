@@ -66,6 +66,7 @@ cases_by_country_chart = app_layout.make_horizontal_bar_chart(
     x_col="total_cases",
     y_col="location",
     title="Cases by country",
+    desc='Which countries have recorded the most cases so far'
 )
 
 # Make a deaths by country chart
@@ -74,6 +75,7 @@ deaths_by_country_chart = app_layout.make_horizontal_bar_chart(
     x_col="total_deaths",
     y_col="location",
     title="Deaths by country",
+    desc='Which countries have recorded the most deaths'
 )
 
 # Make a deaths by country chart
@@ -84,24 +86,26 @@ death_rate_by_country_chart = app_layout.make_horizontal_bar_chart(
     x_col="death_rate",
     y_col="location",
     title="Death rate by country",
+    desc='Which countries have the greatest death rates (%)'
 )
 
 # Create a horizontal charts row
 row = html.Div(
     dbc.Row(
         children=[
-            dbc.Col(
-                dcc.Graph(id="cases-by-country-graph", figure=cases_by_country_chart),
-                width=4,
+            dbc.Col([
+                dcc.Graph(id="cases-by-country-graph", figure=cases_by_country_chart)],
+                width=4
             ),
             dbc.Col(
                 dcc.Graph(id="deaths-by-country-graph", figure=deaths_by_country_chart),
                 width=4,
             ),
-            dbc.Col(
+            dbc.Col([
                 dcc.Graph(
                     id="death-rate-by-country-graph", figure=death_rate_by_country_chart
                 ),
+                html.Div('Death Rate = Number of deaths/number of cases')],
                 width=4,
             ),
         ]

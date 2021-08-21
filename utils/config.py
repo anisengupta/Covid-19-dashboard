@@ -7,3 +7,4 @@ table_name = "covid_19_data"
 columns = ["date", "country_code", "location", "geo_id", "total_cases", "total_deaths"]
 geo_ids_url = 'https://www.geonames.org/countries/'
 continents = ['World', 'Asia', 'Europe', 'North America', 'South America', 'European Union']
+font = 'Courier New'

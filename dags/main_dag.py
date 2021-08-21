@@ -27,7 +27,7 @@ def covid_19_dashboard_update(
 
     Returns
     -------
-    A refreshed Google Data Studio dashboard.
+    A refreshed Postgres database.
 
     """
     # Starting the logger
