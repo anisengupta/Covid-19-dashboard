@@ -347,13 +347,12 @@ class DashboardGraphs:
         """
         group_by_df["death_rate"] = (
             group_by_df["total_deaths"] / group_by_df["total_cases"]
-        )
+        ) * 100
 
         return group_by_df
 
     @staticmethod
-    def create_time_series_data(df: pd.DataFrame,
-                                country: str = None) -> pd.DataFrame:
+    def create_time_series_data(df: pd.DataFrame, country: str = None) -> pd.DataFrame:
         """
         Creates a dataframe required to make a timeseries chart in the Dash app.
 
@@ -370,7 +369,7 @@ class DashboardGraphs:
 
         # If the country_code param is passed in the filter the df accordingly
         if country:
-            df = df[df['location'] == country]
+            df = df[df["location"] == country]
         else:
             pass
 
@@ -378,11 +377,11 @@ class DashboardGraphs:
         df = df[~df["location"].isin(config.continents)]
 
         # Group by new cases & deaths
-        df_grouped = df.groupby('date')['new_cases', 'new_deaths'].sum().reset_index()
+        df_grouped = df.groupby("date")["new_cases", "new_deaths"].sum().reset_index()
 
         # Remove null values in new_cases & new_deaths cols
-        df_grouped['new_cases'] = df_grouped['new_cases'].fillna(0)
-        df_grouped['new_deaths'] = df_grouped['new_deaths'].fillna(0)
+        df_grouped["new_cases"] = df_grouped["new_cases"].fillna(0)
+        df_grouped["new_deaths"] = df_grouped["new_deaths"].fillna(0)
 
         return df_grouped
 
@@ -400,10 +399,10 @@ class DashboardGraphs:
 
         """
         # Create a list of locations
-        locations = df['location'].unique().tolist()
+        locations = df["location"].unique().tolist()
 
         # Add an 'All'
-        locations = ['All'] + locations
+        locations = ["All"] + locations
 
         # Filter out the continents
         locations = [i for i in locations if i not in config.continents]
@@ -411,7 +410,7 @@ class DashboardGraphs:
         # Construct the required list of dictionaries
         sub_dicts = []
         for location in locations:
-            sub_dict = {'label': location, 'value': location}
+            sub_dict = {"label": location, "value": location}
             sub_dicts.append(sub_dict)
 
         return sub_dicts

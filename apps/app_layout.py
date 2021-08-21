@@ -84,11 +84,9 @@ def make_bar_chart_title_explanation(title: str, desc: str) -> str:
     return html_str
 
 
-def make_horizontal_bar_chart(data: pd.DataFrame,
-                              x_col: str,
-                              y_col: str,
-                              title: str,
-                              desc: str):
+def make_horizontal_bar_chart(
+    data: pd.DataFrame, x_col: str, y_col: str, title: str, desc: str
+):
     """
     Makes a horizontal bar chart based on the data inputs.
 
@@ -117,17 +115,15 @@ def make_horizontal_bar_chart(data: pd.DataFrame,
         font_family=config.font,
         title_font_family=config.font,
         title_font_color="orange",
-        yaxis=dict(autorange="reversed")
+        yaxis=dict(autorange="reversed"),
     )
 
     return fig
 
 
-def make_time_series_chart(data: pd.DataFrame,
-                           x_col: str,
-                           y_cols: list,
-                           title: str,
-                           desc: str):
+def make_time_series_chart(
+    data: pd.DataFrame, x_col: str, y_cols: list, title: str, desc: str
+):
     """
     Makes a time series chart based on the input params. Note that it is
     assumed that the param x_col will be a datetime column.
@@ -170,10 +166,6 @@ def make_time_series_dropdown(options: list):
     A Dash dropdown.
 
     """
-    dropdown = dcc.Dropdown(
-        id='time-series-dropdown',
-        options=options
-    )
+    dropdown = dcc.Dropdown(id="time-series-dropdown", options=options)
 
     return dropdown
-

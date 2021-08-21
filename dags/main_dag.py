@@ -9,7 +9,12 @@ import pandas as pd
 
 
 def covid_19_dashboard_update(
-    username: str, password: str, database: str, table_name: str, columns: list, geo_ids_url: str
+    username: str,
+    password: str,
+    database: str,
+    table_name: str,
+    columns: list,
+    geo_ids_url: str,
 ):
     """
     Process for updating the data to get the latest Covid-19 data
@@ -49,7 +54,9 @@ def covid_19_dashboard_update(
     logging.info(columns)
 
     # Making the geo ids dict
-    geo_id_df = dashboard_connector.GetData.make_country_codes_dataframe(url=geo_ids_url)
+    geo_id_df = dashboard_connector.GetData.make_country_codes_dataframe(
+        url=geo_ids_url
+    )
     geo_ids_dict = dashboard_connector.GetData.make_geo_ids_dict(geo_id_df=geo_id_df)
 
     # Make the pandas dataframe
@@ -60,11 +67,11 @@ def covid_19_dashboard_update(
 
     # Making the date column into datetime
     logging.info("Making the date column into datetime")
-    df['date'] = pd.to_datetime(df['date'])
+    df["date"] = pd.to_datetime(df["date"])
 
     # Sorting the dataframe by date and country code
     logging.info("Sorting the dataframe by date and country location")
-    df = df.sort_values(by=['location', 'date'])
+    df = df.sort_values(by=["location", "date"])
 
     # Specify the config to connect to Postgres
     logging.info("Specifying the config to connect to Postgres")
@@ -86,7 +93,7 @@ def covid_19_dashboard_update(
     # Push the dataframe to Postgres
     logging.info("Pushing the dataframe to Postgres")
     dashboard_connector.Postgres(username=username, password=password).push_to_postgres(
-        df=df, table_name=table_name, engine=engine, job_type='replace'
+        df=df, table_name=table_name, engine=engine, job_type="replace"
     )
 
     # Logging the end
@@ -124,7 +131,7 @@ with DAG(
             "database": config.database,
             "table_name": config.table_name,
             "columns": config.columns,
-            'geo_ids_url': config.geo_ids_url
+            "geo_ids_url": config.geo_ids_url,
         },
     )
 

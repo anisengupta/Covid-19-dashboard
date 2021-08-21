@@ -19,8 +19,8 @@ def register_app_callbacks(app):
     """
 
     @app.callback(
-        Output('time-series-chart-area', 'children'),
-        [Input('time-series-dropdown', 'value')]
+        Output("time-series-chart-area", "children"),
+        [Input("time-series-dropdown", "value")],
     )
     def update_time_series_chart(country_value: str):
         """
@@ -41,23 +41,25 @@ def register_app_callbacks(app):
 
         """
         # Retrieve the dataframe from the cache
-        df = cache.get('covid-19-data')
+        df = cache.get("covid-19-data")
 
         # Make a time series dataframe based on the country value
-        if country_value == 'All':
-            df_time_series = cache.get('original-time-series-data')
+        if country_value == "All":
+            df_time_series = cache.get("original-time-series-data")
         else:
-            df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(
-                df=df, country=country_value
+            df_time_series = (
+                dashboard_connector.DashboardGraphs.create_time_series_data(
+                    df=df, country=country_value
+                )
             )
 
         # Make a time series chart
         time_series_chart = app_layout.make_time_series_chart(
             data=df_time_series,
-            x_col='date',
-            y_cols=['new_cases', 'new_deaths'],
-            title=f'Cases and deaths by country for {country_value}',
-            desc='Time series of Covid-19 cases'
+            x_col="date",
+            y_cols=["new_cases", "new_deaths"],
+            title=f"Cases and deaths by country for {country_value}",
+            desc="Time series of Covid-19 cases",
         )
 
         return dcc.Graph(figure=time_series_chart)
