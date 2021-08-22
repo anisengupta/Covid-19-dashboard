@@ -180,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629652661316</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Updated the app.yaml.">
+      <created>1629653386646</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1629653386646</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -202,6 +209,7 @@
     <MESSAGE value="Updated the host name and port for the app deployment. Also added an app.yaml file." />
     <MESSAGE value="Updated the app.yaml file." />
     <MESSAGE value="Updated the func construct engine url to connect to Postgres via AppEngine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the func construct engine url to connect to Postgres via AppEngine." />
+    <MESSAGE value="Updated the app.yaml." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the app.yaml." />
   </component>
 </project>

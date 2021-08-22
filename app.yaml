@@ -1,8 +1,6 @@
 service: default
 runtime: python37
 
-instance_class: F4_HIGHMEM
-
 basic_scaling:
     max_instances: 2
     idle_timeout: 10m
@@ -12,4 +10,4 @@ resources:
     memory_gb: 1
     disk_size_gb: 10
 
-entrypoint: gunicorn -b 0.0.0.0:8080 app:server
+entrypoint: gunicorn -b 0.0.0.0:8080 app:server --timeout 120
