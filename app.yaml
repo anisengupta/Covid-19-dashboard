@@ -1,7 +1,11 @@
 service: covid-19-dashboard
 runtime: python37
 
-instance_class: F4_HIGHMEM
+instance_class: B4_1G
+
+basic_scaling:
+    max_instances: 2
+    idle_timeout: 20m
 
 resources:
     cpu: 1
