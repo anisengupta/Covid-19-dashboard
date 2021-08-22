@@ -1,6 +1,8 @@
 service: default
 runtime: python37
 
+instance_class: F4_HIGHMEM
+
 basic_scaling:
     max_instances: 2
     idle_timeout: 10m
