@@ -9,4 +9,4 @@ The dashboard can be accessed here: https://datastudio.google.com/reporting/c91c
 
 This is a screenshot of the dashboard:
 
-![COVID-19 GDS Dashboard](https://github.com/anisengupta/Covid-19-dashboard/blob/master/COVID-19%20GDS%20dashboard%20screenshot.JPG)
+![COVID-19 GDS Dashboard](https://github.com/anisengupta/Covid-19-dashboard/blob/ani/images/covid_19_dash_app.png?raw=true)
