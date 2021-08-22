@@ -8,8 +8,10 @@ from __init__ import app, cache
 
 # Initiate the app
 server = app.server
+print('Initiating app')
 
 # Set the title
+print('Setting the title')
 title = app_layout.make_navbar_title()
 
 # Set the layout
@@ -201,5 +203,5 @@ app.layout = html.Div(
 app_callbacks.register_app_callbacks(app=app)
 
 # Run the app
-if __name__ == "__main__":
-    app.run_server(host='0.0.0.0', port=8080, debug=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
