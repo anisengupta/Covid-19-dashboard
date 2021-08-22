@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +134,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629647617970</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Updated the README.md.">
+      <created>1629648133851</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1629648133851</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Updated the requirements.txt.">
+      <created>1629648290624</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1629648290624</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -150,6 +165,8 @@
     <MESSAGE value="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths." />
     <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
     <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
+    <MESSAGE value="Updated the README.md." />
+    <MESSAGE value="Updated the requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the requirements.txt." />
   </component>
 </project>
