@@ -15,8 +15,9 @@ app.title = 'Covid 19 data dashboard'
 
 # Set the cache config
 config = {
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
+    "DEBUG": True,          # some Flask specific configs
+    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+    "CACHE_DEFAULT_TIMEOUT": 300
 }
 
 
