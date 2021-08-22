@@ -169,3 +169,54 @@ def make_time_series_dropdown(options: list):
     dropdown = dcc.Dropdown(id="time-series-dropdown", options=options)
 
     return dropdown
+
+
+def make_choropleth_map(data: pd.DataFrame,
+                        country_code_col: str,
+                        country_col: str,
+                        display_col: str,
+                        title: str,
+                        desc: str,
+                        colour: str
+                        ):
+    """
+    Makes a choropleth world map figure.
+
+    Parameters
+    ----------
+    data: the pandas dataframe input.
+    country_code_col: str, the country code column.
+    country_col: str, the country name column.
+    display_col: str, the column to be displayed in the figure.
+    title: str, the title of the graph.
+    desc: str, the description of the graph.
+    colour: str, the colour of the graph.
+
+    Returns
+    -------
+    A choropleth world map figure.
+
+    """
+    # Handle colour input param
+    if colour == 'Blue':
+        color_continuous_scale = px.colors.sequential.Blues
+    else:
+        color_continuous_scale = px.colors.sequential.Reds
+
+    # Set the figure
+    fig = px.choropleth(data_frame=data,
+                        locations=country_code_col,
+                        color=display_col,
+                        hover_name=country_col,
+                        color_continuous_scale=color_continuous_scale)
+
+    # Update the layout of the figure
+    fig.update_layout(
+        title_text=make_bar_chart_title_explanation(title, desc),
+        font_family=config.font,
+        title_font_family=config.font,
+        width=900,
+        height=600
+    )
+
+    return fig

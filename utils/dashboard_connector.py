@@ -414,3 +414,26 @@ class DashboardGraphs:
             sub_dicts.append(sub_dict)
 
         return sub_dicts
+
+    @staticmethod
+    def create_choropleth_data(df: pd.DataFrame, col: str) -> pd.DataFrame:
+        """
+        Makes a dataframe to be used in the choropleth graph creation.
+
+        Parameters
+        ----------
+        df: the pandas dataframe input.
+        col: str, the name of the column to be displayed.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        # Perform the groupby
+        df_groupby = df.groupby(['country_code', 'location'])[col].max().reset_index()
+
+        # Remove null values
+        df_groupby[col] = df_groupby[col].fillna(0)
+
+        return df_groupby

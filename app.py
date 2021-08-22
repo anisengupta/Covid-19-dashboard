@@ -142,9 +142,59 @@ time_series_row = html.Div(
     )
 )
 
+# Make a world map of cases & deaths
+df_groupby_choropleth_cases = dashboard_connector.DashboardGraphs.create_choropleth_data(
+    df=df, col='total_cases'
+)
+
+df_groupby_choropleth_deaths = dashboard_connector.DashboardGraphs.create_choropleth_data(
+    df=df, col='total_deaths'
+)
+
+cases_world_map = app_layout.make_choropleth_map(
+    data=df_groupby_choropleth_cases,
+    country_code_col='country_code',
+    country_col='location',
+    display_col='total_cases',
+    title='Map of cases',
+    desc='',
+    colour='Blue'
+)
+
+deaths_world_map = app_layout.make_choropleth_map(
+    data=df_groupby_choropleth_deaths,
+    country_code_col='country_code',
+    country_col='location',
+    display_col='total_deaths',
+    title='Map of deaths',
+    desc='',
+    colour='Red'
+)
+
+# Make a world map row
+world_map_row = html.Div(
+    dbc.Row(
+        children=[
+            dbc.Col([
+                html.Div(dcc.Graph(id='map-of-cases', figure=cases_world_map))
+            ]),
+            dbc.Col([
+                html.Div(dcc.Graph(id='map-of-deaths', figure=deaths_world_map))
+            ])
+
+        ]
+    )
+)
+
 # Set the layout
 app.layout = html.Div(
-    children=[title, horizontal_chart_row, app_layout.make_break(), time_series_row]
+    children=[
+        title,
+        horizontal_chart_row,
+        app_layout.make_break(),
+        time_series_row,
+        world_map_row
+    ]
 )
 
 # Callbacks
