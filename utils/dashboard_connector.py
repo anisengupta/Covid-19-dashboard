@@ -238,7 +238,7 @@ class Postgres:
 
         Returns
         -------
-        A string in the following format: postgresql+psycopg2://{username}:{password}@localhost:5432/{database}
+        A string in the following format: postgresql+psycopg2://{username}:{password}@172.17.0.1:5432/{database}
 
         """
         return f"postgresql+psycopg2://{self.username}:{self.password}@localhost:5432/{database}"
