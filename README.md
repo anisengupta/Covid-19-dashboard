@@ -5,8 +5,8 @@ Covid-19 data is accessed from the Our World in Data website and parsed into a d
 
 Data is retrieved every day and this scheduling happens everyday locally using Airflow (https://airflow.apache.org/). Data is retrieved in a json format, it is then cleaned and pushed through to a Postgres database. When the Dash app is intialized; this data is then retrieved from Postgres and visualised.
 
-The dashboard can be accessed here: https://datastudio.google.com/reporting/c91cb535-325c-4c80-ac90-9f726dc64579/page/qgR
-
 This is a screenshot of the dashboard:
 
 ![COVID-19 GDS Dashboard](https://github.com/anisengupta/Covid-19-dashboard/blob/ani/images/covid_19_dash_app.png?raw=true)
+
+The dashboard can be accessed here: https://datastudio.google.com/reporting/c91cb535-325c-4c80-ac90-9f726dc64579/page/qgR
