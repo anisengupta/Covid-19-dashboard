@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1wtkYw21I3IKdwhDWN602pT8cFh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyIntegratedToolsModulesConfigurable" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="" />
+      <created>1629285325235</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1629285325235</updated>
+    </task>
+    <task id="LOCAL-00001" summary="- Made new branch: ani&#10;- made folders utils and dags&#10;- in utils folder: stored all code and classes to retrieve data (in json format) and push to a Postgres database.&#10;- in dags folder: made file main_dag.py that will be scheduled locally to run everyday to refresh data sitting in the revelant Postgres database and table.">
+      <created>1629381402161</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1629381402161</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated func push_to_postgres to have job_type as a param when pushing data to Postgres.">
+      <created>1629402651202</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1629402651202</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated func covid_19_dashboard_update in main_dag.py to have specify a job type when pushing data to a Postgres database/table.">
+      <created>1629402949132</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1629402949132</updated>
+    </task>
+    <task id="LOCAL-00004" summary="- Added new funcs within the class GetData in dashboard_connector.py to get a list of country codes with their respective geo ids.&#10;- update funcs that make dataframes accordingly to add geo id as a column.&#10;- Added a config.py to file to store all important information to be stored.&#10;- Decided to create a Dash app for the dashboard instead of GDS as the Postgres connector only allows 100k rows- added an apps folder with app_layout.py &amp; app_callbacks.py. Also added an overall app.py file which initiates the Dash app.">
+      <created>1629466768767</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1629466768767</updated>
+    </task>
+    <task id="LOCAL-00005" summary="_ Updated config.py&#10;- Added functionality to add the following graphs to the Dash app: cases by country, deaths by country, death rate by country.">
+      <created>1629473643194</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1629473643194</updated>
+    </task>
+    <task id="LOCAL-00006" summary="- Added new func in app_layout.py to add title and desc for graph.&#10;- Updated config.py to contain a font to be used in the Dash app.&#10;- Updated app.py to contain titles, desc and footnotes for graphs accordingly.">
+      <created>1629549524177</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629549524177</updated>
+    </task>
+    <task id="LOCAL-00007" summary="- Added charts and overall functionality to add a time series graph of Covid-19 data on the Dash app.&#10;- Added callback funcs in app_callbacks.py to update the time series graph accordingly.&#10;- Added funcs in app_layout.py to add a time series graph creation.&#10;- Updated the config.py to add more columns, continents and font&#10;- Added funcs in dashboard_connector.py to create time series data &amp; create dropdown options&#10;- Added an __init__.py to initialise the cache and the Dash app.&#10;- Updated app.py to add all new graphs, callbacks and cache usage accordingly.">
+      <created>1629560505344</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1629560505344</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated the func create_death_rate_data in dashboard_connector.py to show percentage values.">
+      <created>1629564170243</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1629564170243</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Recreated the cache config to be much simpler.">
+      <created>1629570829549</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1629570829549</updated>
+    </task>
+    <task id="LOCAL-00010" summary="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths.">
+      <created>1629594190036</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1629594190036</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world.">
+      <created>1629644489696</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1629644489696</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku.">
+      <created>1629647617970</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1629647617970</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="- Made new branch: ani&#10;- made folders utils and dags&#10;- in utils folder: stored all code and classes to retrieve data (in json format) and push to a Postgres database.&#10;- in dags folder: made file main_dag.py that will be scheduled locally to run everyday to refresh data sitting in the revelant Postgres database and table." />
+    <MESSAGE value="Updated func push_to_postgres to have job_type as a param when pushing data to Postgres." />
+    <MESSAGE value="Updated func covid_19_dashboard_update in main_dag.py to have specify a job type when pushing data to a Postgres database/table." />
+    <MESSAGE value="- Added new funcs within the class GetData in dashboard_connector.py to get a list of country codes with their respective geo ids.&#10;- update funcs that make dataframes accordingly to add geo id as a column.&#10;- Added a config.py to file to store all important information to be stored.&#10;- Decided to create a Dash app for the dashboard instead of GDS as the Postgres connector only allows 100k rows- added an apps folder with app_layout.py &amp; app_callbacks.py. Also added an overall app.py file which initiates the Dash app." />
+    <MESSAGE value="_ Updated config.py&#10;- Added functionality to add the following graphs to the Dash app: cases by country, deaths by country, death rate by country." />
+    <MESSAGE value="- Added new func in app_layout.py to add title and desc for graph.&#10;- Updated config.py to contain a font to be used in the Dash app.&#10;- Updated app.py to contain titles, desc and footnotes for graphs accordingly." />
+    <MESSAGE value="- Added charts and overall functionality to add a time series graph of Covid-19 data on the Dash app.&#10;- Added callback funcs in app_callbacks.py to update the time series graph accordingly.&#10;- Added funcs in app_layout.py to add a time series graph creation.&#10;- Updated the config.py to add more columns, continents and font&#10;- Added funcs in dashboard_connector.py to create time series data &amp; create dropdown options&#10;- Added an __init__.py to initialise the cache and the Dash app.&#10;- Updated app.py to add all new graphs, callbacks and cache usage accordingly." />
+    <MESSAGE value="Updated the func create_death_rate_data in dashboard_connector.py to show percentage values." />
+    <MESSAGE value="Recreated the cache config to be much simpler." />
+    <MESSAGE value="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths." />
+    <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
+    <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
+  </component>
+</project>
