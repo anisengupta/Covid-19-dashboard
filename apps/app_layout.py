@@ -199,9 +199,9 @@ def make_choropleth_map(data: pd.DataFrame,
     """
     # Handle colour input param
     if colour == 'Blue':
-        color_continuous_scale = px.colors.sequential.Blues
+        color_continuous_scale = px.colors.sequential.Sunset
     else:
-        color_continuous_scale = px.colors.sequential.Reds
+        color_continuous_scale = px.colors.sequential.Magenta
 
     # Set the figure
     fig = px.choropleth(data_frame=data,
