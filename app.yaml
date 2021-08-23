@@ -7,7 +7,7 @@ basic_scaling:
 
 resources:
     cpu: 1
-    memory_gb: 1
+    memory_gb: 5
     disk_size_gb: 10
 
 entrypoint: gunicorn -b 0.0.0.0:8080 app:server --timeout 120
