@@ -15,13 +15,16 @@ app = dash.Dash(
 app.title = 'Covid 19 data dashboard'
 
 # Set the cache config
+print('Setting the cache config')
 if config.env == 'gcp_prod':
+    print('Using the Redis cache for the gcp prod env')
     config = {
         'CACHE_TYPE': 'redis',
         'CACHE_REDIS_HOST': '10.56.192.187',
         'CACHE_REDIS_PORT': '6379'
     }
 else:
+    print('Using a simple cache for the local env')
     config = {
         "DEBUG": True,          # some Flask specific configs
         "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
