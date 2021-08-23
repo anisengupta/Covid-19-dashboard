@@ -337,7 +337,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629715972514</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Updated the app.yaml file.">
+      <created>1629718413065</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1629718413065</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Updated the app.yaml file.">
+      <created>1629718473060</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1629718473060</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -364,9 +378,9 @@
     <MESSAGE value="Updated the creation of the cache config based on the env." />
     <MESSAGE value="Changed the env name in config.py." />
     <MESSAGE value="Updated the requirements.txt." />
-    <MESSAGE value="Updated the app.yaml file." />
     <MESSAGE value="Removed the caching process as it seems to cause problems." />
     <MESSAGE value="Increased mem from 1gb to 5gb." />
-    <option name="LAST_COMMIT_MESSAGE" value="Increased mem from 1gb to 5gb." />
+    <MESSAGE value="Updated the app.yaml file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the app.yaml file." />
   </component>
 </project>
