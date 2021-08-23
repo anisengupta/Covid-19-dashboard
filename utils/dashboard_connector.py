@@ -254,7 +254,10 @@ class Postgres:
         A string in the following format: postgresql+psycopg2://{username}:{password}@172.17.0.1:5432/{database}
 
         """
-        return f"postgresql+psycopg2://{self.username}:{self.password}@localhost:5432/{database}"
+        if config.env == 'gcp_prod':
+            return f"postgresql+psycopg2://{self.username}:{self.password}@172.17.0.1:5432/{database}"
+        else:
+            return f"postgresql+psycopg2://{self.username}:{self.password}@localhost:5432/{database}"
 
     @staticmethod
     def create_engine(engine_url: str) -> sqa.engine:
