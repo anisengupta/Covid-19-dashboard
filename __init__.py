@@ -39,3 +39,6 @@ if config.use_saved_data:
     print('Using the saved data')
 else:
     pass
+
+if config.use_data_from_source:
+    print('Retrieving the Covid-19 data directly from the source')
