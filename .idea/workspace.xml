@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629662528461</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths.">
+      <created>1629709613948</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1629709613948</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -290,6 +295,7 @@
     <MESSAGE value="Added print statements in app.py." />
     <MESSAGE value="Re-set the cache config." />
     <MESSAGE value="Renamed the dag." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed the dag." />
+    <MESSAGE value="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths." />
   </component>
 </project>
