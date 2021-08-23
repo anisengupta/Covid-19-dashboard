@@ -17,7 +17,7 @@ else:
 # Functions
 def get_covid_19_data():
     if config.use_saved_data:
-        filepath = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/data/df.pq'
+        filepath = 'data/df.pq'
         df = pd.read_parquet(filepath)
     else:
         # Make the cases by country h bar chart

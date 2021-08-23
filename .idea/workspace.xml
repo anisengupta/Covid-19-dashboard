@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,12 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629728263223</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Updated requirements.txt.">
+      <created>1629728486291</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1629728486291</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths." />
     <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
     <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
     <MESSAGE value="Updated the README.md." />
@@ -415,6 +421,7 @@
     <MESSAGE value="I am determined to use a cache in this Dash app." />
     <MESSAGE value="Added functionality to control the use of using a cache config from config.py." />
     <MESSAGE value="Added functionality to use saved data - for testing purposes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to use saved data - for testing purposes." />
+    <MESSAGE value="Updated requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated requirements.txt." />
   </component>
 </project>
