@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,20 +52,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00004" summary="- Added new funcs within the class GetData in dashboard_connector.py to get a list of country codes with their respective geo ids.&#10;- update funcs that make dataframes accordingly to add geo id as a column.&#10;- Added a config.py to file to store all important information to be stored.&#10;- Decided to create a Dash app for the dashboard instead of GDS as the Postgres connector only allows 100k rows- added an apps folder with app_layout.py &amp; app_callbacks.py. Also added an overall app.py file which initiates the Dash app.">
-      <created>1629466768767</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1629466768767</updated>
-    </task>
-    <task id="LOCAL-00005" summary="_ Updated config.py&#10;- Added functionality to add the following graphs to the Dash app: cases by country, deaths by country, death rate by country.">
-      <created>1629473643194</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1629473643194</updated>
     </task>
     <task id="LOCAL-00006" summary="- Added new func in app_layout.py to add title and desc for graph.&#10;- Updated config.py to contain a font to be used in the Dash app.&#10;- Updated app.py to contain titles, desc and footnotes for graphs accordingly.">
       <created>1629549524177</created>
@@ -392,12 +382,25 @@
       <option name="project" value="LOCAL" />
       <updated>1629729272865</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Updated the config.py.">
+      <created>1629729516566</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1629729516566</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Changed the name of cache config to be cache_config in __init__.py.">
+      <created>1629729760053</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1629729760053</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated the README.md." />
     <MESSAGE value="Updated the host name and port for the app deployment. Also added an app.yaml file." />
     <MESSAGE value="Updated the func construct engine url to connect to Postgres via AppEngine." />
     <MESSAGE value="Changed the cache config to Redis in __init__.py." />
@@ -420,8 +423,9 @@
     <MESSAGE value="Added functionality to use saved data - for testing purposes." />
     <MESSAGE value="Updated requirements.txt." />
     <MESSAGE value="Updated the app_layout.py func get_covid_19_data to get stored data from the repo path." />
-    <MESSAGE value="Updated the config.py." />
     <MESSAGE value="Updated the app.yaml." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the app.yaml." />
+    <MESSAGE value="Updated the config.py." />
+    <MESSAGE value="Changed the name of cache config to be cache_config in __init__.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the name of cache config to be cache_config in __init__.py." />
   </component>
 </project>

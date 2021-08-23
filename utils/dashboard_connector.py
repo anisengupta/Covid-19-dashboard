@@ -1,4 +1,5 @@
 # Initial Config
+import os
 import pandas as pd
 import numpy as np
 import urllib.request
@@ -8,6 +9,9 @@ import sys
 import importlib
 import logging
 from datetime import date
+from google.cloud import storage
+import google.auth
+from google.oauth2 import service_account
 
 try:
     from utils import config
@@ -498,4 +502,38 @@ class Logging:
             datefmt="%d-%b-%y %H:%M:%S",
             level=logging.INFO,
         )
+
+
+def get_covid_19_data_from_source() -> pd.DataFrame:
+    """
+    Retrieves and cleans the latest up-to-date Covid-19 data directly from
+    the source.
+
+    Returns
+    -------
+    A pandas dataframe.
+
+    """
+    url_path = "https://covid.ourworldindata.org/data/owid-covid-data.json"
+    data = GetData.get_json_data(url_path=url_path)
+    dict_keys = GetData.make_dict_keys(data=data)
+
+    # Making the geo ids dict
+    geo_id_df = GetData.make_country_codes_dataframe(
+        url=config.geo_ids_url
+    )
+    geo_ids_dict = GetData.make_geo_ids_dict(geo_id_df=geo_id_df)
+
+    # Make the pandas dataframe
+    df = GetData.dataframe_all_countries(
+        data=data, dict_keys=dict_keys, columns=config.columns, geo_ids_dict=geo_ids_dict
+    )
+
+    # Making the date column into datetime
+    df["date"] = pd.to_datetime(df["date"])
+
+    # Sorting the dataframe by date and country code
+    df = df.sort_values(by=["location", "date"])
+
+    return df
 
