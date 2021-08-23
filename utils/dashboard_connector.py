@@ -9,9 +9,6 @@ import sys
 import importlib
 import logging
 from datetime import date
-from google.cloud import storage
-import google.auth
-from google.oauth2 import service_account
 
 try:
     from utils import config

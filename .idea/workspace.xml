@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +48,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00007" summary="- Added charts and overall functionality to add a time series graph of Covid-19 data on the Dash app.&#10;- Added callback funcs in app_callbacks.py to update the time series graph accordingly.&#10;- Added funcs in app_layout.py to add a time series graph creation.&#10;- Updated the config.py to add more columns, continents and font&#10;- Added funcs in dashboard_connector.py to create time series data &amp; create dropdown options&#10;- Added an __init__.py to initialise the cache and the Dash app.&#10;- Updated app.py to add all new graphs, callbacks and cache usage accordingly.">
-      <created>1629560505344</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1629560505344</updated>
     </task>
     <task id="LOCAL-00008" summary="Updated the func create_death_rate_data in dashboard_connector.py to show percentage values.">
       <created>1629564170243</created>
@@ -392,12 +385,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629732106878</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Updated the __init__.py.">
+      <created>1629732245797</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1629732245797</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated the func construct engine url to connect to Postgres via AppEngine." />
     <MESSAGE value="Changed the cache config to Redis in __init__.py." />
     <MESSAGE value="Changed the caching type." />
     <MESSAGE value="Added print statements in app.py." />
@@ -422,6 +421,7 @@
     <MESSAGE value="Updated the config.py." />
     <MESSAGE value="Changed the name of cache config to be cache_config in __init__.py." />
     <MESSAGE value="So it turns out, it was the not the cache system that was causing a problem - retrieving the database from Postgres was causing the worker in AppEngine to be static. If a worker is static for more than 30 seconds, the worker is terminated.&#10;&#10;Created functionality to download the dataframe directly from the source." />
-    <option name="LAST_COMMIT_MESSAGE" value="So it turns out, it was the not the cache system that was causing a problem - retrieving the database from Postgres was causing the worker in AppEngine to be static. If a worker is static for more than 30 seconds, the worker is terminated.&#10;&#10;Created functionality to download the dataframe directly from the source." />
+    <MESSAGE value="Updated the __init__.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the __init__.py." />
   </component>
 </project>
