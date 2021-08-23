@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +48,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Updated func covid_19_dashboard_update in main_dag.py to have specify a job type when pushing data to a Postgres database/table.">
-      <created>1629402949132</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1629402949132</updated>
     </task>
     <task id="LOCAL-00004" summary="- Added new funcs within the class GetData in dashboard_connector.py to get a list of country codes with their respective geo ids.&#10;- update funcs that make dataframes accordingly to add geo id as a column.&#10;- Added a config.py to file to store all important information to be stored.&#10;- Decided to create a Dash app for the dashboard instead of GDS as the Postgres connector only allows 100k rows- added an apps folder with app_layout.py &amp; app_callbacks.py. Also added an overall app.py file which initiates the Dash app.">
       <created>1629466768767</created>
@@ -392,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629729238614</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Updated the app.yaml.">
+      <created>1629729272865</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1629729272865</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -400,7 +400,6 @@
     <MESSAGE value="Updated the README.md." />
     <MESSAGE value="Updated the host name and port for the app deployment. Also added an app.yaml file." />
     <MESSAGE value="Updated the func construct engine url to connect to Postgres via AppEngine." />
-    <MESSAGE value="Updated the app.yaml." />
     <MESSAGE value="Changed the cache config to Redis in __init__.py." />
     <MESSAGE value="Changed the caching type." />
     <MESSAGE value="Added print statements in app.py." />
@@ -422,6 +421,7 @@
     <MESSAGE value="Updated requirements.txt." />
     <MESSAGE value="Updated the app_layout.py func get_covid_19_data to get stored data from the repo path." />
     <MESSAGE value="Updated the config.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the config.py." />
+    <MESSAGE value="Updated the app.yaml." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the app.yaml." />
   </component>
 </project>
