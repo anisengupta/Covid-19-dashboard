@@ -10,3 +10,4 @@ continents = ['World', 'Asia', 'Africa', 'Europe', 'North America', 'South Ameri
 font = 'Courier New'
 env = 'localhost'
 use_cache = False
+use_saved_data = True

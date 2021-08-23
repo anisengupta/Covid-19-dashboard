@@ -43,3 +43,8 @@ if config.use_cache:
 else:
     print('Instructed not to use the cache config')
     pass
+
+if config.use_saved_data:
+    print('Using the saved data')
+else:
+    pass

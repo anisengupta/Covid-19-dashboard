@@ -16,27 +16,31 @@ else:
 
 # Functions
 def get_covid_19_data():
-    # Make the cases by country h bar chart
-    query = f"""
-        SELECT * FROM {config.table_name}
-        """
+    if config.use_saved_data:
+        filepath = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/data/df.pq'
+        df = pd.read_parquet(filepath)
+    else:
+        # Make the cases by country h bar chart
+        query = f"""
+            SELECT * FROM {config.table_name}
+            """
 
-    # Construct the engine url
-    print('Constructing the engine url')
-    engine_url = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).construct_engine_url(database=config.database)
+        # Construct the engine url
+        print('Constructing the engine url')
+        engine_url = dashboard_connector.Postgres(
+            username=config.username, password=config.password
+        ).construct_engine_url(database=config.database)
 
-    # Initiate the connection
-    print('Initiating the connection')
-    engine = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).create_engine(engine_url=engine_url)
+        # Initiate the connection
+        print('Initiating the connection')
+        engine = dashboard_connector.Postgres(
+            username=config.username, password=config.password
+        ).create_engine(engine_url=engine_url)
 
-    print('Retrieving the dataframe')
-    df = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).get_data_from_postgres(query=query, engine=engine)
+        print('Retrieving the dataframe')
+        df = dashboard_connector.Postgres(
+            username=config.username, password=config.password
+        ).get_data_from_postgres(query=query, engine=engine)
 
     return df
 
