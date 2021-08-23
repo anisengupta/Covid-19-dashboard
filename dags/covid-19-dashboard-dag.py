@@ -2,10 +2,29 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy import DummyOperator
-from utils import dashboard_connector, config
 import logging
 from datetime import datetime, timedelta
 import pandas as pd
+import sys
+import importlib
+
+# Import the dashboard connector code
+try:
+    from utils import dashboard_connector
+except:
+    code_root = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/utils'
+    if code_root not in sys.path:
+        sys.path.insert(0, code_root)
+
+    module = 'dashboard_connector'
+    dashboard_connector = importlib.import_module(module)
+
+# Import the config
+try:
+    from utils import config
+except:
+    module = 'config'
+    config = importlib.import_module(module)
 
 
 def covid_19_dashboard_update(
@@ -35,7 +54,11 @@ def covid_19_dashboard_update(
     A refreshed Postgres database.
 
     """
-    # Starting the logger
+    # Initiate the logger
+    logger_filepath = '/Users/aniruddha.sengupta/Desktop/Covid-19 dashboard/logs'
+    dashboard_connector.Logging.create_logging_config(filepath=logger_filepath)
+
+    # Starting the logging
     logging.info("The Covid-19 Google Data Studio dashboard process has now started.")
 
     # Specify the url path to get data from
@@ -114,13 +137,13 @@ default_args = {
 with DAG(
     dag_id="main_dag",
     default_args=default_args,
-    description="DAG to update Covid 19 data daily to push to a GDS dashboard.",
+    description="DAG to update Covid 19 data daily to push to a Postgres database.",
     schedule_interval=timedelta(days=1),
     start_date=datetime.now(),
 ) as dag:
 
     # Initiate tasks
-    task_1 = DummyOperator(task_id="Initiate DAG")
+    task_1 = DummyOperator(task_id="Initiate_DAG")
 
     task_2 = PythonOperator(
         task_id="dashboard_update",

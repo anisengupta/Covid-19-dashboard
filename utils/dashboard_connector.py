@@ -4,7 +4,20 @@ import numpy as np
 import urllib.request
 import json
 import sqlalchemy as sqa
-from utils import config
+import sys
+import importlib
+import logging
+from datetime import date
+
+try:
+    from utils import config
+except:
+    code_root = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/utils'
+    if code_root not in sys.path:
+        sys.path.insert(0, code_root)
+
+    module = 'config'
+    config = importlib.import_module(module)
 
 
 # Classes
@@ -241,7 +254,7 @@ class Postgres:
         A string in the following format: postgresql+psycopg2://{username}:{password}@172.17.0.1:5432/{database}
 
         """
-        return f"postgresql+psycopg2://{self.username}:{self.password}@172.17.0.1:5432/{database}"
+        return f"postgresql+psycopg2://{self.username}:{self.password}@localhost:5432/{database}"
 
     @staticmethod
     def create_engine(engine_url: str) -> sqa.engine:
@@ -437,3 +450,49 @@ class DashboardGraphs:
         df_groupby[col] = df_groupby[col].fillna(0)
 
         return df_groupby
+
+
+class Logging:
+    """
+    Logs all messages and outputs from the bot.
+    """
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def create_filename(filepath: str) -> str:
+        """
+        Creates a filename with the latest date.
+        Parameters
+        ----------
+        filepath: str, the filepath of the logger file.
+        Returns
+        -------
+        A filename with the latest date.
+        """
+        today = date.today()
+        d1 = today.strftime("%d_%m_%Y")
+
+        return filepath + "/covid_19_update_log_" + d1 + ".txt"
+
+    @staticmethod
+    def create_logging_config(filepath: str):
+        """
+        Creates a configuration to be used for logging purposes.
+        Parameters
+        ----------
+        filepath: str, the filepath of the logger file.
+        Returns
+        -------
+        """
+        filename = Logging().create_filename(filepath=filepath)
+
+        return logging.basicConfig(
+            filename=filename,
+            filemode="a",
+            format="%(asctime)s - %(message)s",
+            datefmt="%d-%b-%y %H:%M:%S",
+            level=logging.INFO,
+        )
+
