@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/data/df.pq" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,12 +378,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629727650242</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="Added functionality to use saved data - for testing purposes.">
+      <created>1629728263223</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1629728263223</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Recreated the cache config to be much simpler." />
     <MESSAGE value="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths." />
     <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
     <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
@@ -412,6 +414,7 @@
     <MESSAGE value="Updated the app.yaml file." />
     <MESSAGE value="I am determined to use a cache in this Dash app." />
     <MESSAGE value="Added functionality to control the use of using a cache config from config.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to control the use of using a cache config from config.py." />
+    <MESSAGE value="Added functionality to use saved data - for testing purposes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to use saved data - for testing purposes." />
   </component>
 </project>
