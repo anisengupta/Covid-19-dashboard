@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 from utils import config, dashboard_connector
-#from __init__ import cache
+from __init__ import cache
 
 
 # Functions
@@ -270,7 +270,7 @@ def initiate_app_layout():
     ).get_data_from_postgres(query=query, engine=engine)
 
     print('Setting to cache')
-    #cache.set("covid-19-data", df)
+    cache.set("covid-19-data", df)
 
     # Perform a groupby
     print('Performing a groupby')
@@ -352,7 +352,7 @@ def initiate_app_layout():
     df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
 
     print('Setting the time series dataframe to cache')
-    #cache.set("original-time-series-data", df_time_series)
+    cache.set("original-time-series-data", df_time_series)
 
     # Make a time series chart
     print('Making a time series chart')

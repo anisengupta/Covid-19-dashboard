@@ -3,7 +3,7 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 from utils import dashboard_connector, config
 from apps import app_layout
-#from __init__ import cache
+from __init__ import cache
 
 
 # Callback functions
@@ -41,34 +41,11 @@ def register_app_callbacks(app):
 
         """
         # Retrieve the dataframe from the cache
-        #df = cache.get("covid-19-data")
-
-        # Make the cases by country h bar chart
-        query = f"""
-            SELECT * FROM {config.table_name}
-            """
-
-        # Construct the engine url
-        print('Constructing the engine url')
-        engine_url = dashboard_connector.Postgres(
-            username=config.username, password=config.password
-        ).construct_engine_url(database=config.database)
-
-        # Initiate the connection
-        print('Initiating the connection')
-        engine = dashboard_connector.Postgres(
-            username=config.username, password=config.password
-        ).create_engine(engine_url=engine_url)
-
-        print('Retrieving the dataframe')
-        df = dashboard_connector.Postgres(
-            username=config.username, password=config.password
-        ).get_data_from_postgres(query=query, engine=engine)
+        df = cache.get("covid-19-data")
 
         # Make a time series dataframe based on the country value
         if country_value == "All":
-            #df_time_series = cache.get("original-time-series-data")
-            df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
+            df_time_series = cache.get("original-time-series-data")
         else:
             df_time_series = (
                 dashboard_connector.DashboardGraphs.create_time_series_data(

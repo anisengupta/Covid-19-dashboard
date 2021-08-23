@@ -14,7 +14,7 @@ app = dash.Dash(
 # Set the app title
 app.title = 'Covid 19 data dashboard'
 
-"""
+
 # Set the cache config
 print('Setting the cache config')
 if config.env == 'gcp_prod':
@@ -39,4 +39,3 @@ cache = Cache(app.server,
 
 # Initialise the cache
 cache.init_app(app.server)
-"""
