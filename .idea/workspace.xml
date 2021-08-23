@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +49,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00001" summary="- Made new branch: ani&#10;- made folders utils and dags&#10;- in utils folder: stored all code and classes to retrieve data (in json format) and push to a Postgres database.&#10;- in dags folder: made file main_dag.py that will be scheduled locally to run everyday to refresh data sitting in the revelant Postgres database and table.">
-      <created>1629381402161</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1629381402161</updated>
     </task>
     <task id="LOCAL-00002" summary="Updated func push_to_postgres to have job_type as a param when pushing data to Postgres.">
       <created>1629402651202</created>
@@ -392,12 +386,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629728486291</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Updated the app_layout.py func get_covid_19_data to get stored data from the repo path.">
+      <created>1629728864946</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1629728864947</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
     <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
     <MESSAGE value="Updated the README.md." />
     <MESSAGE value="Updated the host name and port for the app deployment. Also added an app.yaml file." />
@@ -422,6 +422,7 @@
     <MESSAGE value="Added functionality to control the use of using a cache config from config.py." />
     <MESSAGE value="Added functionality to use saved data - for testing purposes." />
     <MESSAGE value="Updated requirements.txt." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated requirements.txt." />
+    <MESSAGE value="Updated the app_layout.py func get_covid_19_data to get stored data from the repo path." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the app_layout.py func get_covid_19_data to get stored data from the repo path." />
   </component>
 </project>
