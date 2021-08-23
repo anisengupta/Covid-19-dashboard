@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -282,12 +283,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629710690214</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod.">
+      <created>1629711149424</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1629711149424</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated func push_to_postgres to have job_type as a param when pushing data to Postgres." />
     <MESSAGE value="Updated func covid_19_dashboard_update in main_dag.py to have specify a job type when pushing data to a Postgres database/table." />
     <MESSAGE value="- Added new funcs within the class GetData in dashboard_connector.py to get a list of country codes with their respective geo ids.&#10;- update funcs that make dataframes accordingly to add geo id as a column.&#10;- Added a config.py to file to store all important information to be stored.&#10;- Decided to create a Dash app for the dashboard instead of GDS as the Postgres connector only allows 100k rows- added an apps folder with app_layout.py &amp; app_callbacks.py. Also added an overall app.py file which initiates the Dash app." />
     <MESSAGE value="_ Updated config.py&#10;- Added functionality to add the following graphs to the Dash app: cases by country, deaths by country, death rate by country." />
@@ -312,6 +319,7 @@
     <MESSAGE value="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths." />
     <MESSAGE value="- Added new func in app_layout.py - initiate_app_layout.&#10;- Updated app.py accordingly." />
     <MESSAGE value="Added a print statement to the hostname." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a print statement to the hostname." />
+    <MESSAGE value="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod." />
   </component>
 </project>

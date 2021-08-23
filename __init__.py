@@ -2,6 +2,7 @@
 import dash
 import dash_bootstrap_components as dbc
 from flask_caching import Cache
+from utils import config
 
 # Initiate the app
 app = dash.Dash(
@@ -14,12 +15,18 @@ app = dash.Dash(
 app.title = 'Covid 19 data dashboard'
 
 # Set the cache config
-config = {
-    "DEBUG": True,          # some Flask specific configs
-    "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
-    "CACHE_DEFAULT_TIMEOUT": 300
-}
-
+if config.env == 'gcp_prod':
+    config = {
+        'CACHE_TYPE': 'redis',
+        'CACHE_REDIS_HOST': '10.56.192.187',
+        'CACHE_REDIS_PORT': '6379'
+    }
+else:
+    config = {
+        "DEBUG": True,          # some Flask specific configs
+        "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
+        "CACHE_DEFAULT_TIMEOUT": 300
+    }
 
 # Set the cache config
 cache = Cache(app.server,

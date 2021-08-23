@@ -1,9 +1,6 @@
 # Initial Config
 from apps import app_layout, app_callbacks
 from __init__ import app
-import os
-
-print(os.system('hostname'))
 
 # Initiate the app
 server = app.server
