@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629713049942</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Updated the requirements.txt.">
+      <created>1629713347276</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1629713347276</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -316,7 +323,6 @@
     <MESSAGE value="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world." />
     <MESSAGE value="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku." />
     <MESSAGE value="Updated the README.md." />
-    <MESSAGE value="Updated the requirements.txt." />
     <MESSAGE value="Updated the host name and port for the app deployment. Also added an app.yaml file." />
     <MESSAGE value="Updated the app.yaml file." />
     <MESSAGE value="Updated the func construct engine url to connect to Postgres via AppEngine." />
@@ -332,6 +338,7 @@
     <MESSAGE value="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod." />
     <MESSAGE value="Updated the creation of the cache config based on the env." />
     <MESSAGE value="Changed the env name in config.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed the env name in config.py." />
+    <MESSAGE value="Updated the requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the requirements.txt." />
   </component>
 </project>
