@@ -8,4 +8,4 @@ columns = ["date", "country_code", "location", "geo_id", "total_cases", "total_d
 geo_ids_url = 'https://www.geonames.org/countries/'
 continents = ['World', 'Asia', 'Africa', 'Europe', 'North America', 'South America', 'European Union', 'Oceania']
 font = 'Courier New'
-env = 'local'
+env = 'gcp_prod'
