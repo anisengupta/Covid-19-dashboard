@@ -20,14 +20,14 @@ if config.use_cache:
     print('Setting the cache config')
     if config.env == 'gcp_prod':
         print('Using the Redis cache for the gcp prod env')
-        config = {
+        cache_config = {
             'CACHE_TYPE': 'redis',
             'CACHE_REDIS_HOST': '10.56.192.187',
             'CACHE_REDIS_PORT': '6379'
         }
     else:
         print('Using a simple cache for the local env')
-        config = {
+        cache_config = {
             "DEBUG": True,          # some Flask specific configs
             "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
             "CACHE_DEFAULT_TIMEOUT": 300
@@ -35,7 +35,7 @@ if config.use_cache:
 
     # Set the cache config
     cache = Cache(app.server,
-                  config=config
+                  config=cache_config
                   )
 
     # Initialise the cache
