@@ -3,7 +3,12 @@ import dash_core_components as dcc
 from dash.dependencies import Input, Output
 from utils import dashboard_connector, config
 from apps import app_layout
-from __init__ import cache
+
+# Use the cache only if instructed in the config
+if config.use_cache:
+    from __init__ import cache
+else:
+    pass
 
 
 # Callback functions
@@ -40,12 +45,19 @@ def register_app_callbacks(app):
         A chart to be displayed.
 
         """
-        # Retrieve the dataframe from the cache
-        df = cache.get("covid-19-data")
+        # Retrieve the dataframe
+        if config.use_cache:
+            # Retrieve the dataframe from the cache
+            df = cache.get("covid-19-data")
+        else:
+            df = app_layout.get_covid_19_data()
 
         # Make a time series dataframe based on the country value
         if country_value == "All":
-            df_time_series = cache.get("original-time-series-data")
+            if config.use_cache:
+                df_time_series = cache.get("original-time-series-data")
+            else:
+                df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
         else:
             df_time_series = (
                 dashboard_connector.DashboardGraphs.create_time_series_data(

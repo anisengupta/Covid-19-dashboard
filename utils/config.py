@@ -9,3 +9,4 @@ geo_ids_url = 'https://www.geonames.org/countries/'
 continents = ['World', 'Asia', 'Africa', 'Europe', 'North America', 'South America', 'European Union', 'Oceania']
 font = 'Courier New'
 env = 'localhost'
+use_cache = False

@@ -6,10 +6,41 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 from utils import config, dashboard_connector
-from __init__ import cache
+
+# Use the cache only if instructed in the config
+if config.use_cache:
+    from __init__ import cache
+else:
+    pass
 
 
 # Functions
+def get_covid_19_data():
+    # Make the cases by country h bar chart
+    query = f"""
+        SELECT * FROM {config.table_name}
+        """
+
+    # Construct the engine url
+    print('Constructing the engine url')
+    engine_url = dashboard_connector.Postgres(
+        username=config.username, password=config.password
+    ).construct_engine_url(database=config.database)
+
+    # Initiate the connection
+    print('Initiating the connection')
+    engine = dashboard_connector.Postgres(
+        username=config.username, password=config.password
+    ).create_engine(engine_url=engine_url)
+
+    print('Retrieving the dataframe')
+    df = dashboard_connector.Postgres(
+        username=config.username, password=config.password
+    ).get_data_from_postgres(query=query, engine=engine)
+
+    return df
+
+
 def make_navbar_title():
     """
     Sets the navigation bar on the top of the page with the title.
@@ -247,30 +278,14 @@ def initiate_app_layout():
         "background-image": "radial-gradient(#697582, #383F49,#383F49)",
     }
 
-    # Make the cases by country h bar chart
-    query = f"""
-    SELECT * FROM {config.table_name}
-    """
+    # Get the data
+    df = get_covid_19_data()
 
-    # Construct the engine url
-    print('Constructing the engine url')
-    engine_url = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).construct_engine_url(database=config.database)
-
-    # Initiate the connection
-    print('Initiating the connection')
-    engine = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).create_engine(engine_url=engine_url)
-
-    print('Retrieving the dataframe')
-    df = dashboard_connector.Postgres(
-        username=config.username, password=config.password
-    ).get_data_from_postgres(query=query, engine=engine)
-
-    print('Setting to cache')
-    cache.set("covid-19-data", df)
+    if config.use_cache:
+        print('Setting to cache')
+        cache.set("covid-19-data", df)
+    else:
+        pass
 
     # Perform a groupby
     print('Performing a groupby')
@@ -351,8 +366,11 @@ def initiate_app_layout():
     print('Making a time series dataframe')
     df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
 
-    print('Setting the time series dataframe to cache')
-    cache.set("original-time-series-data", df_time_series)
+    if config.use_cache:
+        print('Setting the time series dataframe to cache')
+        cache.set("original-time-series-data", df_time_series)
+    else:
+        pass
 
     # Make a time series chart
     print('Making a time series chart')
