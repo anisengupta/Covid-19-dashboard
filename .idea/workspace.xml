@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/df.pq" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,13 +49,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00010" summary="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths.">
-      <created>1629594190036</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1629594190036</updated>
     </task>
     <task id="LOCAL-00011" summary="Changed the colour palettes of the world maps showing cases &amp; deaths of Covid-19 across the world.">
       <created>1629644489696</created>
@@ -395,12 +386,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629732681902</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally.">
+      <created>1629796921104</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1629796921104</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed the caching type." />
     <MESSAGE value="Added print statements in app.py." />
     <MESSAGE value="Re-set the cache config." />
     <MESSAGE value="Renamed the dag." />
@@ -425,6 +422,7 @@
     <MESSAGE value="Updated the __init__.py." />
     <MESSAGE value="Removed unused imports." />
     <MESSAGE value="Updated the requirements.txt." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the requirements.txt." />
+    <MESSAGE value="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally." />
   </component>
 </project>
