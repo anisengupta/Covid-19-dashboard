@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Covid-19-dashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Covid-19-dashboard.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,13 +50,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Updated the README.md.">
-      <created>1629648133851</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1629648133851</updated>
     </task>
     <task id="LOCAL-00014" summary="Updated the requirements.txt.">
       <created>1629648290624</created>
@@ -399,12 +387,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629801164785</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally.">
+      <created>1629822739873</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1629822739875</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Renamed the dag." />
     <MESSAGE value="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths." />
     <MESSAGE value="- Added new func in app_layout.py - initiate_app_layout.&#10;- Updated app.py accordingly." />
     <MESSAGE value="Added a print statement to the hostname." />
@@ -429,6 +423,7 @@
     <MESSAGE value="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally." />
     <MESSAGE value="Added new data to the repo." />
     <MESSAGE value="Removed the password from the config.py." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed the password from the config.py." />
+    <MESSAGE value="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally." />
+    <option name="LAST_COMMIT_MESSAGE" value="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally." />
   </component>
 </project>

@@ -143,7 +143,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id="main_dag",
+    dag_id="covid_data_dag",
     default_args=default_args,
     description="DAG to update Covid 19 data daily to push to a Postgres database.",
     schedule_interval='30 9 * * *',

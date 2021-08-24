@@ -14,6 +14,6 @@ use_saved_data = False
 use_data_from_source = False
 filepath = 'data/covid_19_df.pq'
 use_data_from_gcp = True
-credentials_path = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/certs/covid-19-dashboard-323716-d1f0ddf37e79.json'
+credentials_path = 'certs/covid-19-dashboard-323716-d1f0ddf37e79.json'
 gsutil_uri = 'gs://covid-19-data/covid_19_df.pq'
 bucket = 'covid-19-data'
