@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +49,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Updated the requirements.txt.">
-      <created>1629648290624</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1629648290624</updated>
     </task>
     <task id="LOCAL-00015" summary="Updated the requirements.txt.">
       <created>1629648847081</created>
@@ -392,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629822739875</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Updated the requirements.txt.">
+      <created>1629824844163</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1629824844164</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -417,11 +418,11 @@
     <MESSAGE value="So it turns out, it was the not the cache system that was causing a problem - retrieving the database from Postgres was causing the worker in AppEngine to be static. If a worker is static for more than 30 seconds, the worker is terminated.&#10;&#10;Created functionality to download the dataframe directly from the source." />
     <MESSAGE value="Updated the __init__.py." />
     <MESSAGE value="Removed unused imports." />
-    <MESSAGE value="Updated the requirements.txt." />
     <MESSAGE value="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally." />
     <MESSAGE value="Added new data to the repo." />
     <MESSAGE value="Removed the password from the config.py." />
     <MESSAGE value="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made new branch asdev where the following changes are made:&#10;- added new process to download dataframe from GCP bucket in Dash app&#10;- upgraded the main dag to save off the dataframe into the GCP bucket instead of locally." />
+    <MESSAGE value="Updated the requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the requirements.txt." />
   </component>
 </project>
