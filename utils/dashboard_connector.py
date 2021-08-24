@@ -9,6 +9,7 @@ import sys
 import importlib
 import logging
 from datetime import date
+from google.cloud import storage
 
 try:
     from utils import config
@@ -533,4 +534,74 @@ def get_covid_19_data_from_source() -> pd.DataFrame:
     df = df.sort_values(by=["location", "date"])
 
     return df
+
+
+class GCP:
+    """
+    Contains functions to write and retrieve data from GCP.
+    """
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def set_credentials(credentials_path: str):
+        """
+        Sets the credentials path. Note that the prerequisite steps of obtaining
+        credentials must be performed. Please see here for more information:
+        https://cloud.google.com/docs/authentication/production.
+
+        Parameters
+        ----------
+        credentials_path: str, the path where the credentials are stored.
+
+        Returns
+        -------
+        The credentials being set
+
+        """
+        print('Setting the Google Application Credentials')
+        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+
+    @staticmethod
+    def upload_dataframe_to_gcp_bucket(df: pd.DataFrame,
+                                       bucket_name: str,
+                                       file_name: str,
+                                       file_type: str):
+        """
+        Uploads a dataframe to a GCP bucket. Note that the set_credentials func
+        must be passed on first.
+
+        Parameters
+        ----------
+        df: pd.DataFrame, the pandas dataframe input.
+        bucket_name: str, the name of the bucket.
+        file_name: str, the name of the file.
+        file_type: str, the name of the file type.
+
+        Returns
+        -------
+        A dataframe being uploaded to the relevant GCP bucket.
+
+        """
+        client = storage.Client()
+        bucket = client.get_bucket(bucket_name)
+
+        bucket.blob(file_name).upload_from_string(df.to_parquet(), file_type)
+
+    @staticmethod
+    def read_dataframe_from_bucket(file_path: str) -> pd.DataFrame:
+        """
+        Reads a dataframe straight from the GCP bucket.
+
+        Parameters
+        ----------
+        file_path: str, the file path, usually the gsutil URI.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        return pd.read_parquet(file_path)
 

@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Covid-19-dashboard.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Covid-19-dashboard.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dashboard_connector.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dashboard_connector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ani" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,13 +55,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Updated the README.md, added a Procfile and requirements.txt to deploy to Heroku.">
-      <created>1629647617970</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1629647617970</updated>
     </task>
     <task id="LOCAL-00013" summary="Updated the README.md.">
       <created>1629648133851</created>
@@ -393,12 +392,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629797388588</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Removed the password from the config.py.">
+      <created>1629801164785</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1629801164785</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Re-set the cache config." />
     <MESSAGE value="Renamed the dag." />
     <MESSAGE value="- Updated the importing of dashboard_connector.py &amp; config.py in covid-19-dashboard-dag.py and dashboard_connector.py to use absolute module paths in the events of failures.&#10;- Added a Logging class in dashboard_connector.py to initiate the logging module and filepaths." />
     <MESSAGE value="- Added new func in app_layout.py - initiate_app_layout.&#10;- Updated app.py accordingly." />
@@ -423,6 +428,7 @@
     <MESSAGE value="Updated the requirements.txt." />
     <MESSAGE value="Added an extra step in the main dag in covid-19-dashboard-dag.py to save the dataframe locally." />
     <MESSAGE value="Added new data to the repo." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added new data to the repo." />
+    <MESSAGE value="Removed the password from the config.py." />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed the password from the config.py." />
   </component>
 </project>
