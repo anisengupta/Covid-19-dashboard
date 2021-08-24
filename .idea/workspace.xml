@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/app_layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/app_layout.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" beforeDir="false" afterPath="$PROJECT_DIR$/dags/covid-19-dashboard-dag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/config.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +51,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Recreated the cache config to be much simpler.">
-      <created>1629570829549</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1629570829549</updated>
     </task>
     <task id="LOCAL-00010" summary="- Updated file app_layout.py to add a choropleth graph map.&#10;- Added new func create_choropleth_data in class DashboardGraphs.&#10;- Updated app.py to add two choropleth graphs to the Dash app for total cases &amp; deaths.">
       <created>1629594190036</created>
@@ -392,7 +388,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629732400966</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Updated the requirements.txt.">
+      <created>1629732681902</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1629732681902</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -407,7 +410,6 @@
     <MESSAGE value="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod." />
     <MESSAGE value="Updated the creation of the cache config based on the env." />
     <MESSAGE value="Changed the env name in config.py." />
-    <MESSAGE value="Updated the requirements.txt." />
     <MESSAGE value="Removed the caching process as it seems to cause problems." />
     <MESSAGE value="Increased mem from 1gb to 5gb." />
     <MESSAGE value="Updated the app.yaml file." />
@@ -422,6 +424,7 @@
     <MESSAGE value="So it turns out, it was the not the cache system that was causing a problem - retrieving the database from Postgres was causing the worker in AppEngine to be static. If a worker is static for more than 30 seconds, the worker is terminated.&#10;&#10;Created functionality to download the dataframe directly from the source." />
     <MESSAGE value="Updated the __init__.py." />
     <MESSAGE value="Removed unused imports." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unused imports." />
+    <MESSAGE value="Updated the requirements.txt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the requirements.txt." />
   </component>
 </project>

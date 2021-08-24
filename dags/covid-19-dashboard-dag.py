@@ -119,6 +119,10 @@ def covid_19_dashboard_update(
         df=df, table_name=table_name, engine=engine, job_type="replace"
     )
 
+    # Saving the dataframe locally
+    logging.info('Saving the dataframe locally')
+    df.to_parquet(config.filepath)
+
     # Logging the end
     logging.info("The process has now ended")
 
@@ -138,8 +142,8 @@ with DAG(
     dag_id="main_dag",
     default_args=default_args,
     description="DAG to update Covid 19 data daily to push to a Postgres database.",
-    schedule_interval=timedelta(days=1),
-    start_date=datetime.now(),
+    schedule_interval='30 9 * * *',
+    start_date=datetime(2021, 8, 24),
 ) as dag:
 
     # Initiate tasks

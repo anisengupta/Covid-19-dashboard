@@ -11,4 +11,5 @@ font = 'Courier New'
 env = 'localhost'
 use_cache = True
 use_saved_data = False
-use_data_from_source = True
+use_data_from_source = False
+filepath = 'data/covid_19_df.pq'
