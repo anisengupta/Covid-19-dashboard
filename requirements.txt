@@ -21,3 +21,4 @@ google-cloud==0.34.0
 google-cloud-core==2.0.0
 google-cloud-storage==1.42.0
 fsspec==2021.7.0
+gcsfs==2021.7.0
