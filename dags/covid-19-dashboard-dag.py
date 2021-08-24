@@ -119,9 +119,13 @@ def covid_19_dashboard_update(
         df=df, table_name=table_name, engine=engine, job_type="replace"
     )
 
-    # Saving the dataframe locally
-    logging.info('Saving the dataframe locally')
-    df.to_parquet(config.filepath)
+    # Saving the dataframe to a GCP bucket
+    bucket_name = config.bucket
+    dashboard_connector.GCP.set_credentials(credentials_path=config.credentials_path)
+    logging.info(f'Saving the dataframe to a GCP bucket - {bucket_name}')
+    dashboard_connector.GCP.upload_dataframe_to_gcp_bucket(
+        df=df, bucket_name=bucket_name, file_name='covid_19_df.pq', file_type='pq'
+    )
 
     # Logging the end
     logging.info("The process has now ended")
@@ -139,7 +143,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id="main_dag",
+    dag_id="covid_data_dag",
     default_args=default_args,
     description="DAG to update Covid 19 data daily to push to a Postgres database.",
     schedule_interval='30 9 * * *',

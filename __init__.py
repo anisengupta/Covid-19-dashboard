@@ -42,3 +42,6 @@ else:
 
 if config.use_data_from_source:
     print('Retrieving the Covid-19 data directly from the source')
+
+if config.use_data_from_gcp:
+    print(f'Retrieving data from the GCP bucket - {config.bucket}')
