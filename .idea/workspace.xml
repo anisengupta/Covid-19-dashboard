@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="012c1179-fc9a-42fa-87b5-edc36c9501c8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,34 +48,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Updated the func construct engine url to connect to Postgres via AppEngine.">
-      <created>1629652661316</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1629652661316</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Updated the app.yaml.">
-      <created>1629653386646</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1629653386646</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Updated the app.yaml.">
-      <created>1629653753619</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1629653753619</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Updated the app.yaml.">
-      <created>1629654171064</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1629654171064</updated>
     </task>
     <task id="LOCAL-00023" summary="Updated the app.yaml.">
       <created>1629654780835</created>
@@ -392,12 +364,39 @@
       <option name="project" value="LOCAL" />
       <updated>1629828782885</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Updated the gitignore.">
+      <created>1629828877964</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1629828877964</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Updated the gitignore.">
+      <created>1629828925632</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1629828925632</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Updated the gitignore.">
+      <created>1629829011218</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1629829011218</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Updated the gitignore.">
+      <created>1629829100051</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1629829100051</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added a print statement to the hostname." />
     <MESSAGE value="Added the handling of the engine url construction to take into consideration the operating env: either local or gcp_prod." />
     <MESSAGE value="Updated the creation of the cache config based on the env." />
     <MESSAGE value="Changed the env name in config.py." />
@@ -422,6 +421,7 @@
     <MESSAGE value="Updated the requirements.txt." />
     <MESSAGE value="Added the credentials.json to the .gitignore." />
     <MESSAGE value="Updated the README.md." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated the README.md." />
+    <MESSAGE value="Updated the gitignore." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated the gitignore." />
   </component>
 </project>

@@ -7,6 +7,6 @@ Data is retrieved every day and this scheduling happens everyday locally using A
 
 This is a screenshot of the dashboard:
 
-![COVID-19 GDS Dashboard](https://github.com/anisengupta/Covid-19-dashboard/blob/ani/images/covid_19_dash_app.png?raw=true)
+![COVID-19 Dashboard](https://github.com/anisengupta/Covid-19-dashboard/blob/ani/images/covid_19_dash_app.png?raw=true)
 
 The dashboard can be accessed here: https://covid-19-dashboard-dot-covid-19-dashboard-323716.nw.r.appspot.com/
