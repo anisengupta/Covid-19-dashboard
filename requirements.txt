@@ -12,3 +12,11 @@ psycopg2-binary==2.9.1
 redis==3.5.3
 pyarrow==3.0.0
 lxml==4.6.1
+google-api-core==2.0.0
+google-api-python-client==2.18.0
+google-auth==2.0.1                    
+google-auth-httplib2==0.1.0
+google-auth-oauthlib==0.4.5
+google-cloud==0.34.0
+google-cloud-core==2.0.0
+google-cloud-storage==1.42.0
