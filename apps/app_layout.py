@@ -34,6 +34,7 @@ def get_covid_19_data() -> pd.DataFrame:
         dashboard_connector.GCP.set_credentials(credentials_path=config.credentials_path)
         df = dashboard_connector.GCP.read_dataframe_from_bucket(file_path=config.gsutil_uri)
     else:
+        print('Using data from Postgres')
         # Make the cases by country h bar chart
         query = f"""
             SELECT * FROM {config.table_name}
