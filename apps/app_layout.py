@@ -36,31 +36,20 @@ def get_covid_19_data() -> pd.DataFrame:
     elif config.use_data_from_source:
         df = dashboard_connector.get_covid_19_data_from_source()
     elif config.use_data_from_gcp:
-        dashboard_connector.GCP.set_credentials(credentials_path=config.credentials_path)
-        df = dashboard_connector.GCP.read_dataframe_from_bucket(file_path=config.gsutil_uri)
+        dashboard_connector.GCP.set_credentials(
+            credentials_path=config.credentials_path
+        )
+        df = dashboard_connector.GCP.read_dataframe_from_bucket(
+            file_path=config.gsutil_uri
+        )
     else:
-        print('Using data from Postgres')
-        # Make the cases by country h bar chart
-        query = f"""
-            SELECT * FROM {config.table_name}
-            """
-
-        # Construct the engine url
-        print('Constructing the engine url')
+        print("Constructing the engine url")
         engine_url = dashboard_connector.Postgres(
-            username=config.username, password=passwords_dict.get('postgres_password')
+            username=config.username, password=passwords_dict.get("postgres_password")
         ).construct_engine_url(database=config.database)
-
-        # Initiate the connection
-        print('Initiating the connection')
-        engine = dashboard_connector.Postgres(
-            username=config.username, password=passwords_dict.get('postgres_password')
-        ).create_engine(engine_url=engine_url)
-
-        print('Retrieving the dataframe')
-        df = dashboard_connector.Postgres(
-            username=config.username, password=passwords_dict.get('postgres_password')
-        ).get_data_from_postgres(query=query, engine=engine)
+        df = dashboard_connector.get_covid_19_data_from_postgres(
+            table_name=config.table_name, engine_url=engine_url
+        )
 
     return df
 
@@ -227,14 +216,15 @@ def make_time_series_dropdown(options: list):
     return dropdown
 
 
-def make_choropleth_map(data: pd.DataFrame,
-                        country_code_col: str,
-                        country_col: str,
-                        display_col: str,
-                        title: str,
-                        desc: str,
-                        colour: str
-                        ):
+def make_choropleth_map(
+    data: pd.DataFrame,
+    country_code_col: str,
+    country_col: str,
+    display_col: str,
+    title: str,
+    desc: str,
+    colour: str,
+):
     """
     Makes a choropleth world map figure.
 
@@ -254,17 +244,19 @@ def make_choropleth_map(data: pd.DataFrame,
 
     """
     # Handle colour input param
-    if colour == 'Blue':
+    if colour == "Blue":
         color_continuous_scale = px.colors.sequential.Sunset
     else:
         color_continuous_scale = px.colors.sequential.Magenta
 
     # Set the figure
-    fig = px.choropleth(data_frame=data,
-                        locations=country_code_col,
-                        color=display_col,
-                        hover_name=country_col,
-                        color_continuous_scale=color_continuous_scale)
+    fig = px.choropleth(
+        data_frame=data,
+        locations=country_code_col,
+        color=display_col,
+        hover_name=country_col,
+        color_continuous_scale=color_continuous_scale,
+    )
 
     # Update the layout of the figure
     fig.update_layout(
@@ -272,7 +264,7 @@ def make_choropleth_map(data: pd.DataFrame,
         font_family=config.font,
         title_font_family=config.font,
         width=900,
-        height=600
+        height=600,
     )
 
     return fig
@@ -288,11 +280,11 @@ def initiate_app_layout():
 
     """
     # Set the title
-    print('Setting the title')
+    print("Setting the title")
     title = make_navbar_title()
 
     # Set the layout
-    print('Setting the layout')
+    print("Setting the layout")
     app_layout_style = {
         "position": "fixed",
         "max-width": "100vw",
@@ -302,33 +294,45 @@ def initiate_app_layout():
         "background-image": "radial-gradient(#697582, #383F49,#383F49)",
     }
 
-    # Get the data
-    df = get_covid_19_data()
-
-    if config.use_cache:
-        print('Setting to cache')
-        cache.set("covid-19-data", df)
+    # Get the data - need to evaluate where the data comes from
+    if config.use_data_from_heroku:
+        df_groupby = dashboard_connector.get_covid_19_data_from_postgres(
+            table_name=config.heroku_table_name,
+            engine_url=passwords_dict.get("heroku_postgres_uri"),
+        )
     else:
-        pass
+        df = get_covid_19_data()
 
-    # Perform a groupby
-    print('Performing a groupby')
-    df_groupby = dashboard_connector.DashboardGraphs.group_by_data(
-        df=df, group_by_col="location"
-    )
+        if config.use_cache:
+            print("Setting to cache")
+            cache.set("covid-19-data", df)
+        else:
+            pass
+
+        # Perform a groupby
+        print("Performing a groupby")
+        df_groupby = dashboard_connector.DashboardGraphs.group_by_data(
+            df=df, group_by_col="location"
+        )
+
+        # Make a time series dataframe
+        print("Making a time series dataframe")
+        df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(
+            df=df
+        )
 
     # Remove the continents
-    print('Removing the continents from the groupby dataframe')
+    print("Removing the continents from the groupby dataframe")
     df_groupby = df_groupby[~df_groupby["location"].isin(config.continents)]
 
     # Make death rate data
-    print('Making death rate data')
+    print("Making death rate data")
     df_group_by_death_rate = dashboard_connector.DashboardGraphs.create_death_rate_data(
         group_by_df=df_groupby
     )
 
     # Make a cases by country chart
-    print('Making a cases by country chart')
+    print("Making a cases by country chart")
     cases_by_country_chart = make_horizontal_bar_chart(
         data=df_groupby.sort_values(by=["total_cases"], ascending=False).head(10),
         x_col="total_cases",
@@ -338,7 +342,7 @@ def initiate_app_layout():
     )
 
     # Make a deaths by country chart
-    print('Making a deaths by country chart')
+    print("Making a deaths by country chart")
     deaths_by_country_chart = make_horizontal_bar_chart(
         data=df_groupby.sort_values(by=["total_deaths"], ascending=False).head(10),
         x_col="total_deaths",
@@ -348,11 +352,11 @@ def initiate_app_layout():
     )
 
     # Make a death rate by country chart
-    print('Making a death rate by country chart')
+    print("Making a death rate by country chart")
     death_rate_by_country_chart = make_horizontal_bar_chart(
-        data=df_group_by_death_rate.sort_values(by=["death_rate"], ascending=False).head(
-            10
-        ),
+        data=df_group_by_death_rate.sort_values(
+            by=["death_rate"], ascending=False
+        ).head(10),
         x_col="death_rate",
         y_col="location",
         title="Death rate by country",
@@ -360,16 +364,22 @@ def initiate_app_layout():
     )
 
     # Create a horizontal charts row
-    print('Creating a horizontal charts row')
+    print("Creating a horizontal charts row")
     horizontal_chart_row = html.Div(
         dbc.Row(
             children=[
                 dbc.Col(
-                    [dcc.Graph(id="cases-by-country-graph", figure=cases_by_country_chart)],
+                    [
+                        dcc.Graph(
+                            id="cases-by-country-graph", figure=cases_by_country_chart
+                        )
+                    ],
                     width=4,
                 ),
                 dbc.Col(
-                    dcc.Graph(id="deaths-by-country-graph", figure=deaths_by_country_chart),
+                    dcc.Graph(
+                        id="deaths-by-country-graph", figure=deaths_by_country_chart
+                    ),
                     width=4,
                 ),
                 dbc.Col(
@@ -386,18 +396,14 @@ def initiate_app_layout():
         )
     )
 
-    # Make a time series dataframe
-    print('Making a time series dataframe')
-    df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
-
     if config.use_cache:
-        print('Setting the time series dataframe to cache')
+        print("Setting the time series dataframe to cache")
         cache.set("original-time-series-data", df_time_series)
     else:
         pass
 
     # Make a time series chart
-    print('Making a time series chart')
+    print("Making a time series chart")
     time_series_chart = make_time_series_chart(
         data=df_time_series,
         x_col="date",
@@ -407,19 +413,21 @@ def initiate_app_layout():
     )
 
     # Make time series dropdown options
-    print('Making the time series dropdown options')
+    print("Making the time series dropdown options")
     options = dashboard_connector.DashboardGraphs.create_dropdown_options(df=df)
 
     # Make the time series dropdown
-    print('Creating the time series dropdown')
+    print("Creating the time series dropdown")
     dropdown = make_time_series_dropdown(options=options)
 
-    print('Making a time series row')
+    print("Making a time series row")
     time_series_row = html.Div(
         dbc.Row(
             children=[
                 dbc.Col(
-                    html.Div(dcc.Graph(id="time-series-chart", figure=time_series_chart)),
+                    html.Div(
+                        dcc.Graph(id="time-series-chart", figure=time_series_chart)
+                    ),
                     width=10,
                     id="time-series-chart-area",
                 ),
@@ -429,61 +437,64 @@ def initiate_app_layout():
     )
 
     # Make a world map of cases & deaths
-    print('Making a world map of cases')
-    df_groupby_choropleth_cases = dashboard_connector.DashboardGraphs.create_choropleth_data(
-        df=df, col='total_cases'
+    print("Making a world map of cases")
+    df_groupby_choropleth_cases = (
+        dashboard_connector.DashboardGraphs.create_choropleth_data(
+            df=df, col="total_cases"
+        )
     )
 
-    print('Making a world map of deaths')
-    df_groupby_choropleth_deaths = dashboard_connector.DashboardGraphs.create_choropleth_data(
-        df=df, col='total_deaths'
+    print("Making a world map of deaths")
+    df_groupby_choropleth_deaths = (
+        dashboard_connector.DashboardGraphs.create_choropleth_data(
+            df=df, col="total_deaths"
+        )
     )
 
     cases_world_map = make_choropleth_map(
         data=df_groupby_choropleth_cases,
-        country_code_col='country_code',
-        country_col='location',
-        display_col='total_cases',
-        title='Map of cases',
-        desc='',
-        colour='Blue'
+        country_code_col="country_code",
+        country_col="location",
+        display_col="total_cases",
+        title="Map of cases",
+        desc="",
+        colour="Blue",
     )
 
     deaths_world_map = make_choropleth_map(
         data=df_groupby_choropleth_deaths,
-        country_code_col='country_code',
-        country_col='location',
-        display_col='total_deaths',
-        title='Map of deaths',
-        desc='',
-        colour='Red'
+        country_code_col="country_code",
+        country_col="location",
+        display_col="total_deaths",
+        title="Map of deaths",
+        desc="",
+        colour="Red",
     )
 
     # Make a world map row
-    print('Making a world map row')
+    print("Making a world map row")
     world_map_row = html.Div(
         dbc.Row(
             children=[
-                dbc.Col([
-                    html.Div(dcc.Graph(id='map-of-cases', figure=cases_world_map))
-                ]),
-                dbc.Col([
-                    html.Div(dcc.Graph(id='map-of-deaths', figure=deaths_world_map))
-                ])
-
+                dbc.Col(
+                    [html.Div(dcc.Graph(id="map-of-cases", figure=cases_world_map))]
+                ),
+                dbc.Col(
+                    [html.Div(dcc.Graph(id="map-of-deaths", figure=deaths_world_map))]
+                ),
             ]
         )
     )
 
     # Set the layout
-    print('Setting the app layout')
+    print("Setting the app layout")
     app_layout = html.Div(
         children=[
             title,
             horizontal_chart_row,
             make_break(),
             time_series_row,
-            world_map_row
+            world_map_row,
         ]
     )
 

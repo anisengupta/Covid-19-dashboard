@@ -10,16 +10,21 @@ import importlib
 import logging
 from datetime import date
 from google.cloud import storage
+import json
 
 try:
     from utils import config
 except:
-    code_root = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/utils'
+    code_root = "/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/utils"
     if code_root not in sys.path:
         sys.path.insert(0, code_root)
 
-    module = 'config'
+    module = "config"
     config = importlib.import_module(module)
+
+# Import the passwords.json file
+f = open(config.passwords_file_path)
+passwords_dict = json.load(f)
 
 
 # Classes
@@ -256,7 +261,7 @@ class Postgres:
         A string in the following format: postgresql+psycopg2://{username}:{password}@172.17.0.1:5432/{database}
 
         """
-        if config.env == 'gcp_prod':
+        if config.env == "gcp_prod":
             return f"postgresql+psycopg2://{self.username}:{self.password}@172.17.0.1:5432/{database}"
         else:
             return f"postgresql+psycopg2://{self.username}:{self.password}@localhost:5432/{database}"
@@ -315,6 +320,29 @@ class Postgres:
 
         """
         return pd.read_sql(query, engine)
+
+    @staticmethod
+    def pivot_dataframe(
+        df: pd.DataFrame, value_col: str, index_col: str, column: str
+    ) -> pd.DataFrame:
+        """
+        Pivots a dataframe based on the params inputs.
+
+        Parameters
+        ----------
+        df: pd.DataFrame, the pandas dataframe input.
+        value_col: str, the value column.
+        index_col: str, the index column.
+        column: str, the columns to include.
+
+        Returns
+        -------
+        A pandas dataframe.
+
+        """
+        return pd.pivot_table(
+            df, values=value_col, index=[index_col], columns=column, aggfunc=np.sum
+        )
 
 
 class DashboardGraphs:
@@ -449,7 +477,7 @@ class DashboardGraphs:
 
         """
         # Perform the groupby
-        df_groupby = df.groupby(['country_code', 'location'])[col].max().reset_index()
+        df_groupby = df.groupby(["country_code", "location"])[col].max().reset_index()
 
         # Remove null values
         df_groupby[col] = df_groupby[col].fillna(0)
@@ -502,40 +530,6 @@ class Logging:
         )
 
 
-def get_covid_19_data_from_source() -> pd.DataFrame:
-    """
-    Retrieves and cleans the latest up-to-date Covid-19 data directly from
-    the source.
-
-    Returns
-    -------
-    A pandas dataframe.
-
-    """
-    url_path = "https://covid.ourworldindata.org/data/owid-covid-data.json"
-    data = GetData.get_json_data(url_path=url_path)
-    dict_keys = GetData.make_dict_keys(data=data)
-
-    # Making the geo ids dict
-    geo_id_df = GetData.make_country_codes_dataframe(
-        url=config.geo_ids_url
-    )
-    geo_ids_dict = GetData.make_geo_ids_dict(geo_id_df=geo_id_df)
-
-    # Make the pandas dataframe
-    df = GetData.dataframe_all_countries(
-        data=data, dict_keys=dict_keys, columns=config.columns, geo_ids_dict=geo_ids_dict
-    )
-
-    # Making the date column into datetime
-    df["date"] = pd.to_datetime(df["date"])
-
-    # Sorting the dataframe by date and country code
-    df = df.sort_values(by=["location", "date"])
-
-    return df
-
-
 class GCP:
     """
     Contains functions to write and retrieve data from GCP.
@@ -560,14 +554,13 @@ class GCP:
         The credentials being set
 
         """
-        print('Setting the Google Application Credentials')
+        print("Setting the Google Application Credentials")
         os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 
     @staticmethod
-    def upload_dataframe_to_gcp_bucket(df: pd.DataFrame,
-                                       bucket_name: str,
-                                       file_name: str,
-                                       file_type: str):
+    def upload_dataframe_to_gcp_bucket(
+        df: pd.DataFrame, bucket_name: str, file_name: str, file_type: str
+    ):
         """
         Uploads a dataframe to a GCP bucket. Note that the set_credentials func
         must be passed on first.
@@ -605,3 +598,64 @@ class GCP:
         """
         return pd.read_parquet(file_path)
 
+
+def get_covid_19_data_from_source() -> pd.DataFrame:
+    """
+    Retrieves and cleans the latest up-to-date Covid-19 data directly from
+    the source.
+
+    Returns
+    -------
+    A pandas dataframe.
+
+    """
+    url_path = "https://covid.ourworldindata.org/data/owid-covid-data.json"
+    data = GetData.get_json_data(url_path=url_path)
+    dict_keys = GetData.make_dict_keys(data=data)
+
+    # Making the geo ids dict
+    geo_id_df = GetData.make_country_codes_dataframe(url=config.geo_ids_url)
+    geo_ids_dict = GetData.make_geo_ids_dict(geo_id_df=geo_id_df)
+
+    # Make the pandas dataframe
+    df = GetData.dataframe_all_countries(
+        data=data,
+        dict_keys=dict_keys,
+        columns=config.columns,
+        geo_ids_dict=geo_ids_dict,
+    )
+
+    # Making the date column into datetime
+    df["date"] = pd.to_datetime(df["date"])
+
+    # Sorting the dataframe by date and country code
+    df = df.sort_values(by=["location", "date"])
+
+    return df
+
+
+def get_covid_19_data_from_postgres(table_name: str, engine_url: str) -> pd.DataFrame:
+    """
+    Retrieves and cleans the latest up-to-date Covid-19 data from Postgres.
+
+    Returns
+    -------
+    A pandas dataframe.
+
+    """
+    print("Using data from Postgres")
+    # Make the cases by country h bar chart
+    query = f"""SELECT * FROM {table_name}"""
+
+    # Initiate the connection
+    print("Initiating the connection")
+    engine = Postgres(
+        username=config.username, password=passwords_dict.get("postgres_password")
+    ).create_engine(engine_url=engine_url)
+
+    print("Retrieving the dataframe")
+    df = Postgres(
+        username=config.username, password=passwords_dict.get("postgres_password")
+    ).get_data_from_postgres(query=query, engine=engine)
+
+    return df

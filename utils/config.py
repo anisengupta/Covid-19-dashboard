@@ -17,3 +17,7 @@ credentials_path = 'certs/covid-19-dashboard-323716-d1f0ddf37e79.json'
 gsutil_uri = 'gs://covid-19-data/covid_19_df.pq'
 bucket = 'covid-19-data'
 passwords_file_path = 'certs/passwords.json'
+use_data_from_heroku = False
+heroku_table_name = 'covid_19_total_cases_deaths'
+heroku_table_new_cases = 'new_cases'
+heroku_table_new_deaths = 'new_deaths'

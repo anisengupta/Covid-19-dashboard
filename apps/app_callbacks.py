@@ -57,7 +57,9 @@ def register_app_callbacks(app):
             if config.use_cache:
                 df_time_series = cache.get("original-time-series-data")
             else:
-                df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
+                df_time_series = (
+                    dashboard_connector.DashboardGraphs.create_time_series_data(df=df)
+                )
         else:
             df_time_series = (
                 dashboard_connector.DashboardGraphs.create_time_series_data(

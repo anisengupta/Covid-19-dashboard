@@ -12,36 +12,34 @@ app = dash.Dash(
 )
 
 # Set the app title
-app.title = 'Covid 19 data dashboard'
+app.title = "Covid 19 data dashboard"
 
 
 # Set the cache config - if set to do so in the config
 if config.use_cache:
-    print('Using a simple cache')
+    print("Using a simple cache")
     cache_config = {
-        "DEBUG": True,          # some Flask specific configs
+        "DEBUG": True,  # some Flask specific configs
         "CACHE_TYPE": "SimpleCache",  # Flask-Caching related configs
-        "CACHE_DEFAULT_TIMEOUT": 300
+        "CACHE_DEFAULT_TIMEOUT": 300,
     }
 
     # Set the cache config
-    cache = Cache(app.server,
-                  config=cache_config
-                  )
+    cache = Cache(app.server, config=cache_config)
 
     # Initialise the cache
     cache.init_app(app.server)
 else:
-    print('Instructed not to use the cache config')
+    print("Instructed not to use the cache config")
     pass
 
 if config.use_saved_data:
-    print('Using the saved data')
+    print("Using the saved data")
 else:
     pass
 
 if config.use_data_from_source:
-    print('Retrieving the Covid-19 data directly from the source')
+    print("Retrieving the Covid-19 data directly from the source")
 
 if config.use_data_from_gcp:
-    print(f'Retrieving data from the GCP bucket - {config.bucket}')
+    print(f"Retrieving data from the GCP bucket - {config.bucket}")
