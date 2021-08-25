@@ -6,12 +6,17 @@ import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
 from utils import config, dashboard_connector
+import json
 
 # Use the cache only if instructed in the config
 if config.use_cache:
     from __init__ import cache
 else:
     pass
+
+# Import the passwords.json file
+f = open(config.passwords_file_path)
+passwords_dict = json.load(f)
 
 
 # Functions
@@ -43,18 +48,18 @@ def get_covid_19_data() -> pd.DataFrame:
         # Construct the engine url
         print('Constructing the engine url')
         engine_url = dashboard_connector.Postgres(
-            username=config.username, password=config.password
+            username=config.username, password=passwords_dict.get('postgres_password')
         ).construct_engine_url(database=config.database)
 
         # Initiate the connection
         print('Initiating the connection')
         engine = dashboard_connector.Postgres(
-            username=config.username, password=config.password
+            username=config.username, password=passwords_dict.get('postgres_password')
         ).create_engine(engine_url=engine_url)
 
         print('Retrieving the dataframe')
         df = dashboard_connector.Postgres(
-            username=config.username, password=config.password
+            username=config.username, password=passwords_dict.get('postgres_password')
         ).get_data_from_postgres(query=query, engine=engine)
 
     return df
