@@ -344,6 +344,16 @@ class Postgres:
             df, values=value_col, index=[index_col], columns=column, aggfunc=np.sum
         )
 
+    @staticmethod
+    def unstack_dataframe(df: pd.DataFrame, col_name: str) -> pd.DataFrame:
+        df = df.set_index('date')
+        df = df.unstack().reset_index(name=col_name)
+
+        df = df.rename(columns={'level_0': 'location'})
+        df[col_name] = df[col_name].fillna(0)
+
+        return df
+
 
 class DashboardGraphs:
     """
@@ -609,15 +619,24 @@ def get_covid_19_data_from_source() -> pd.DataFrame:
     A pandas dataframe.
 
     """
-    url_path = "https://covid.ourworldindata.org/data/owid-covid-data.json"
-    data = GetData.get_json_data(url_path=url_path)
+    logging.info("Specifying the url path to get data from")
+    logging.info(config.url_path)
+
+    logging.info("Retrieving the data and make dictionary keys")
+    data = GetData.get_json_data(url_path=config.url_path)
     dict_keys = GetData.make_dict_keys(data=data)
+    logging.info(dict_keys)
+
+    # Specify the columns to keep
+    logging.info("Specifying the columns to keep")
+    logging.info(config.columns)
 
     # Making the geo ids dict
     geo_id_df = GetData.make_country_codes_dataframe(url=config.geo_ids_url)
     geo_ids_dict = GetData.make_geo_ids_dict(geo_id_df=geo_id_df)
 
     # Make the pandas dataframe
+    logging.info("Making the pandas dataframe")
     df = GetData.dataframe_all_countries(
         data=data,
         dict_keys=dict_keys,
@@ -626,9 +645,11 @@ def get_covid_19_data_from_source() -> pd.DataFrame:
     )
 
     # Making the date column into datetime
+    logging.info("Making the date column into datetime")
     df["date"] = pd.to_datetime(df["date"])
 
     # Sorting the dataframe by date and country code
+    logging.info("Sorting the dataframe by date and country location")
     df = df.sort_values(by=["location", "date"])
 
     return df

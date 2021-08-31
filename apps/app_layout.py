@@ -298,7 +298,52 @@ def initiate_app_layout():
     if config.use_data_from_heroku:
         df_groupby = dashboard_connector.get_covid_19_data_from_postgres(
             table_name=config.heroku_table_name,
-            engine_url=passwords_dict.get("heroku_postgres_uri"),
+            engine_url=passwords_dict.get("heroku_postgres_uri")
+        )
+
+        # Retrieve the time series dataframes for new cases and new deaths
+        df_time_series_new_cases = dashboard_connector.get_covid_19_data_from_postgres(
+            table_name=config.heroku_table_new_cases,
+            engine_url=passwords_dict.get("heroku_postgres_uri")
+        )
+
+        df_time_series_new_deaths = dashboard_connector.get_covid_19_data_from_postgres(
+            table_name=config.heroku_table_new_deaths,
+            engine_url=passwords_dict.get("heroku_postgres_uri")
+        )
+
+        # Unstack them
+        df_time_series_new_cases = dashboard_connector.Postgres.unstack_dataframe(
+            df=df_time_series_new_cases, col_name='new_cases'
+        )
+
+        df_time_series_new_deaths = dashboard_connector.Postgres.unstack_dataframe(
+            df=df_time_series_new_deaths, col_name='new_deaths'
+        )
+
+        # Merge them
+        df_time_series = df_time_series_new_cases.merge(df_time_series_new_deaths,
+                                                        how='left',
+                                                        on=['location', 'date'])
+
+        # Make time series dropdown options
+        options = dashboard_connector.DashboardGraphs.create_dropdown_options(
+            df=df_time_series
+        )
+
+        # Make a world map of cases & deaths
+        print("Making a world map of cases")
+        df_groupby_choropleth_cases = (
+            dashboard_connector.DashboardGraphs.create_choropleth_data(
+                df=df, col="total_cases"
+            )
+        )
+
+        print("Making a world map of deaths")
+        df_groupby_choropleth_deaths = (
+            dashboard_connector.DashboardGraphs.create_choropleth_data(
+                df=df, col="total_deaths"
+            )
         )
     else:
         df = get_covid_19_data()
@@ -319,6 +364,25 @@ def initiate_app_layout():
         print("Making a time series dataframe")
         df_time_series = dashboard_connector.DashboardGraphs.create_time_series_data(
             df=df
+        )
+
+        # Make time series dropdown options
+        print("Making the time series dropdown options")
+        options = dashboard_connector.DashboardGraphs.create_dropdown_options(df=df)
+
+        # Make a world map of cases & deaths
+        print("Making a world map of cases")
+        df_groupby_choropleth_cases = (
+            dashboard_connector.DashboardGraphs.create_choropleth_data(
+                df=df, col="total_cases"
+            )
+        )
+
+        print("Making a world map of deaths")
+        df_groupby_choropleth_deaths = (
+            dashboard_connector.DashboardGraphs.create_choropleth_data(
+                df=df, col="total_deaths"
+            )
         )
 
     # Remove the continents
@@ -412,10 +476,6 @@ def initiate_app_layout():
         desc="Time series of Covid-19 cases",
     )
 
-    # Make time series dropdown options
-    print("Making the time series dropdown options")
-    options = dashboard_connector.DashboardGraphs.create_dropdown_options(df=df)
-
     # Make the time series dropdown
     print("Creating the time series dropdown")
     dropdown = make_time_series_dropdown(options=options)
@@ -433,21 +493,6 @@ def initiate_app_layout():
                 ),
                 dbc.Col([make_break(), make_break(), dropdown]),
             ]
-        )
-    )
-
-    # Make a world map of cases & deaths
-    print("Making a world map of cases")
-    df_groupby_choropleth_cases = (
-        dashboard_connector.DashboardGraphs.create_choropleth_data(
-            df=df, col="total_cases"
-        )
-    )
-
-    print("Making a world map of deaths")
-    df_groupby_choropleth_deaths = (
-        dashboard_connector.DashboardGraphs.create_choropleth_data(
-            df=df, col="total_deaths"
         )
     )
 

@@ -1,4 +1,5 @@
 # Contains all the configurations needed for the Dash app and overall processes
+url_path = "https://covid.ourworldindata.org/data/owid-covid-data.json"
 navbar_logo_url = 'https://www.spi.ox.ac.uk/sites/default/files/styles/mt_image_medium/public/spi/images/article/our_world_in_data.jpg?itok=sXt5oJje'
 username = "postgres"
 database = "covid_19"
@@ -16,7 +17,7 @@ use_data_from_gcp = False
 credentials_path = 'certs/covid-19-dashboard-323716-d1f0ddf37e79.json'
 gsutil_uri = 'gs://covid-19-data/covid_19_df.pq'
 bucket = 'covid-19-data'
-passwords_file_path = 'certs/passwords.json'
+passwords_file_path = '/Users/aniruddha.sengupta/PycharmProjects/Covid-19-dashboard/certs/passwords.json'
 use_data_from_heroku = False
 heroku_table_name = 'covid_19_total_cases_deaths'
 heroku_table_new_cases = 'new_cases'

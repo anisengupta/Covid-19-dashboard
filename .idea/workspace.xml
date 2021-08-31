@@ -62,13 +62,6 @@
       <option name="presentableId" value="Default" />
       <updated>1629285325235</updated>
     </task>
-    <task id="LOCAL-00025" summary="Updated the app.yaml.">
-      <created>1629657445398</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1629657445398</updated>
-    </task>
     <task id="LOCAL-00026" summary="Changed the cache config to Redis in __init__.py.">
       <created>1629659982118</created>
       <option name="number" value="00026" />
@@ -405,12 +398,18 @@
       <option name="project" value="LOCAL" />
       <updated>1629879799940</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Added functionality to make a task in the main dag to push data to Heroku Postgres and updated dashboard processes accordingly.">
+      <created>1629903121054</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1629903121054</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Changed the env name in config.py." />
     <MESSAGE value="Removed the caching process as it seems to cause problems." />
     <MESSAGE value="Increased mem from 1gb to 5gb." />
     <MESSAGE value="Updated the app.yaml file." />
@@ -435,6 +434,7 @@
     <MESSAGE value="Updated the gitignore." />
     <MESSAGE value="Added a print statement to indicate when data is being loaded in from Postgres." />
     <MESSAGE value="Added a passwords.json file in the gitignore." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a passwords.json file in the gitignore." />
+    <MESSAGE value="Added functionality to make a task in the main dag to push data to Heroku Postgres and updated dashboard processes accordingly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added functionality to make a task in the main dag to push data to Heroku Postgres and updated dashboard processes accordingly." />
   </component>
 </project>
